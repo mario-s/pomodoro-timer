@@ -1,0 +1,18 @@
+<strings>
+	<string id="AppName">PomodoroTimer</string>
+	<string id="PomodoroLength">Dauer eines Pomodoro (in Minuten)</string>
+	<string id="ShortBreakLength">Dauer einer kurzen Pause zwischen den Pomodoros</string>
+	<string id="LongBreakLength">Dauer einer langen Pause zwischen den Pomodoros</string>
+	<string id="NumberOfPomodorosBeforeLongBreak">Anzahl der Pomodoros in einer Gruppe</string>
+	<string id="TickStrength">Stärke der Vibration nach einem Intervall</string>
+	<string id="TickDuration">Länge der Vibration nach einem Intervall</string>
+	<string id="MuteSounds">Sonidos de silencio</string>
+
+	<string id="PomodoroSubtitle">Minuten übrig</string>
+	<string id="ShortBreakLabel">Kurze Pause!</string>
+	<string id="LongBreakLabel">Lange Pause!</string>
+	<string id="ReadyLabel">Fertig!</string>
+
+	<string id="RestartMenuLabel">Neustrat</string>
+	<string id="ExitMenuLabel">Beenden</string>
+</strings>

@@ -1,0 +1,4 @@
+<menu id="StopMenu">
+	<menu-item id="restart" label="@Strings.RestartMenuLabel" />
+	<menu-item id="exit" label="@Strings.ExitMenuLabel" />
+</menu>
