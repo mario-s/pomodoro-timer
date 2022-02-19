@@ -18,6 +18,6 @@ class PomodoroApp extends App.AppBase {
 	}
 
 	function getInitialView() {
-		return [ new PomodoroView(), new PomodoroDelegate() ];
+		return [new PomodoroView(), new PomodoroDelegate()];
 	}
 }
