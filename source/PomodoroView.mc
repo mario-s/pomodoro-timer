@@ -62,27 +62,48 @@ class PomodoroView extends Ui.View {
 	function onUpdate(dc) {
 		dc.setColor(Gfx.COLOR_TRANSPARENT, Gfx.COLOR_BLACK);
 		dc.clear();
+
 		if (isBreakTimerStarted) {
-			dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_TRANSPARENT);
-			dc.drawText(me.centerX, me.pomodoroOffset, Gfx.FONT_MEDIUM, isLongBreak() ? me.longBreakLabel : me.shortBreakLabel, Gfx.TEXT_JUSTIFY_CENTER);
-			me.drawMinutes(dc);
-			dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_TRANSPARENT);
-			me.drawRemainingLabel(dc);
+			drawBreak(dc);
 		} else if (isPomodoroTimerStarted) {
-			dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
-			me.drawMinutes(dc);
-			dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
-			me.drawRemainingLabel(dc);
+			drawRunning(dc);
 		} else {
-			dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
-			dc.drawText(me.centerX, me.readyLabelOffset, Gfx.FONT_LARGE, me.readyLabel, Gfx.TEXT_JUSTIFY_CENTER);
+			drawReady(dc);
 		}
 
 		if (!isBreakTimerStarted) {
-			dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
-			dc.drawText(me.centerX, me.pomodoroOffset, Gfx.FONT_MEDIUM, "Pomodoro #" + pomodoroNumber, Gfx.TEXT_JUSTIFY_CENTER);
+			drawStage(dc);
 		}
 
+		drawTime(dc);
+	}
+
+	private function drawBreak(dc) {
+		dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_TRANSPARENT);
+		dc.drawText(self.centerX, self.pomodoroOffset, Gfx.FONT_MEDIUM, isLongBreak() ? self.longBreakLabel : self.shortBreakLabel, Gfx.TEXT_JUSTIFY_CENTER);
+		drawMinutes(dc);
+		dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_TRANSPARENT);
+		drawRemainingLabel(dc);
+	}
+
+	private function drawRunning(dc) {
+		dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
+		drawMinutes(dc);
+		dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
+		drawRemainingLabel(dc);
+	}
+
+	private function drawReady(dc) {
+		dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
+		dc.drawText(self.centerX, self.readyLabelOffset, Gfx.FONT_LARGE, self.readyLabel, Gfx.TEXT_JUSTIFY_CENTER);
+	}
+
+	private function drawStage(dc) {
+		dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
+		dc.drawText(self.centerX, self.pomodoroOffset, Gfx.FONT_MEDIUM, "Pomodoro #" + pomodoroNumber, Gfx.TEXT_JUSTIFY_CENTER);
+	}
+
+	private function drawTime(dc) {
 		dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
 		dc.drawText(self.centerX, self.timeOffset, Gfx.FONT_NUMBER_MILD, self.getTime(), Gfx.TEXT_JUSTIFY_CENTER);
 	}
