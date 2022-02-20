@@ -67,7 +67,7 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 			isBreakTimerStarted = false;
 			pomodoroNumber += 1;
 			resetMinutes();
-			timer.start( method( :idleCallback ), WAIT_TIME, true );
+			timer.start(method(:idleCallback), WAIT_TIME, true);
 		}
 
 		Ui.requestUpdate();
@@ -100,7 +100,7 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 
 	function onSelect() {
 		if (isBreakTimerStarted || isPomodoroTimerStarted) {
-			Ui.pushView( new Rez.Menus.StopMenu(), new StopMenuDelegate(), Ui.SLIDE_UP );
+			Ui.pushView(new Rez.Menus.StopMenu(), new StopMenuDelegate(), Ui.SLIDE_UP);
 			return true;
 		}
 
