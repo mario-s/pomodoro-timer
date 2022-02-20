@@ -1,0 +1,7 @@
+bin/
+
+*.prg
+*.prg.*
+*-settings.json
+
+.DS_Store
