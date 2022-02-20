@@ -5,21 +5,24 @@ using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.Lang;
 
+/**
+* Main App view.
+**/
 class PomodoroView extends Ui.View {
-	hidden var remainingMinutes;
-	hidden var remainingMinute;
-	hidden var shortBreakLabel;
-	hidden var longBreakLabel;
-	hidden var readyLabel;
+	private var remainingMinutes;
+	private var remainingMinute;
+	private var shortBreakLabel;
+	private var longBreakLabel;
+	private var readyLabel;
 
-	hidden var centerX;
-	hidden var centerY;
+	private var centerX;
+	private var centerY;
 
-	hidden var pomodoroOffset;
-	hidden var captionOffset;
-	hidden var readyLabelOffset;
-	hidden var minutesOffset;
-	hidden var timeOffset;
+	private var pomodoroOffset;
+	private var captionOffset;
+	private var readyLabelOffset;
+	private var minutesOffset;
+	private var timeOffset;
 
 	function initialize() {
 		View.initialize();
@@ -56,9 +59,6 @@ class PomodoroView extends Ui.View {
 		readyLabel = Ui.loadResource(Rez.Strings.ReadyLabel);
 	}
 
-	function onShow() {
-	}
-
 	function onUpdate(dc) {
 		dc.setColor(Gfx.COLOR_TRANSPARENT, Gfx.COLOR_BLACK);
 		dc.clear();
@@ -67,12 +67,12 @@ class PomodoroView extends Ui.View {
 			dc.drawText(me.centerX, me.pomodoroOffset, Gfx.FONT_MEDIUM, isLongBreak() ? me.longBreakLabel : me.shortBreakLabel, Gfx.TEXT_JUSTIFY_CENTER);
 			me.drawMinutes(dc);
 			dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_TRANSPARENT);
-			me.drawCaption(dc);
+			me.drawRemainingLabel(dc);
 		} else if (isPomodoroTimerStarted) {
 			dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
 			me.drawMinutes(dc);
 			dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
-			me.drawCaption(dc);
+			me.drawRemainingLabel(dc);
 		} else {
 			dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
 			dc.drawText(me.centerX, me.readyLabelOffset, Gfx.FONT_LARGE, me.readyLabel, Gfx.TEXT_JUSTIFY_CENTER);
@@ -87,11 +87,11 @@ class PomodoroView extends Ui.View {
 		dc.drawText(self.centerX, self.timeOffset, Gfx.FONT_NUMBER_MILD, self.getTime(), Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
-	hidden function drawMinutes(dc) {
+	private function drawMinutes(dc) {
 		dc.drawText(me.centerX, me.minutesOffset, Gfx.FONT_NUMBER_THAI_HOT, minutes.format( "%02d" ), Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
-	hidden function drawCaption(dc) {
+	private function drawRemainingLabel(dc) {
 		var text = me.remainingMinutes;
 		if (minutes <= 1) {
 			text = me.remainingMinute;
@@ -99,7 +99,7 @@ class PomodoroView extends Ui.View {
 		dc.drawText(me.centerX, me.captionOffset, Gfx.FONT_TINY, text, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
-	function getTime() {
+	private function getTime() {
 		var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
 		return Lang.format("$1$:$2$", [
 			today.hour.format("%02d"),

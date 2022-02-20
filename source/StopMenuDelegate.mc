@@ -2,6 +2,9 @@ using Toybox.Attention as Attention;
 using Toybox.System as System;
 using Toybox.WatchUi as Ui;
 
+/**
+ * Delegate for the Stop Menu Item.
+ **/
 class StopMenuDelegate extends Ui.MenuInputDelegate {
 
 	function initialize() {
