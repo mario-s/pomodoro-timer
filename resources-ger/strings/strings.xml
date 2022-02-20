@@ -8,7 +8,8 @@
 	<string id="TickDuration">Länge der Vibration nach einem Intervall</string>
 	<string id="MuteSounds">Sonidos de silencio</string>
 
-	<string id="PomodoroSubtitle">Minuten übrig</string>
+	<string id="RemainingMinutes">Minuten übrig</string>
+	<string id="RemainingMinute">Minute übrig</string>
 	<string id="ShortBreakLabel">Kurze Pause!</string>
 	<string id="LongBreakLabel">Lange Pause!</string>
 	<string id="ReadyLabel">Fertig!</string>

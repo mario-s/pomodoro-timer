@@ -6,7 +6,8 @@ using Toybox.Time.Gregorian;
 using Toybox.Lang;
 
 class PomodoroView extends Ui.View {
-	hidden var pomodoroSubtitle;
+	hidden var remainingMinutes;
+	hidden var remainingMinute;
 	hidden var shortBreakLabel;
 	hidden var longBreakLabel;
 	hidden var readyLabel;
@@ -48,7 +49,8 @@ class PomodoroView extends Ui.View {
 	}
 
 	private function loadLabels() {
-		pomodoroSubtitle = Ui.loadResource(Rez.Strings.PomodoroSubtitle);
+		remainingMinutes = Ui.loadResource(Rez.Strings.RemainingMinutes);
+		remainingMinute = Ui.loadResource(Rez.Strings.RemainingMinute);
 		shortBreakLabel = Ui.loadResource(Rez.Strings.ShortBreakLabel);
 		longBreakLabel = Ui.loadResource(Rez.Strings.LongBreakLabel);
 		readyLabel = Ui.loadResource(Rez.Strings.ReadyLabel);
@@ -90,10 +92,11 @@ class PomodoroView extends Ui.View {
 	}
 
 	hidden function drawCaption(dc) {
-		dc.drawText(me.centerX, me.captionOffset, Gfx.FONT_TINY, me.pomodoroSubtitle, Gfx.TEXT_JUSTIFY_CENTER);
-	}
-
-	function onHide() {
+		var text = me.remainingMinutes;
+		if (minutes <= 1) {
+			text = me.remainingMinute;
+		}
+		dc.drawText(me.centerX, me.captionOffset, Gfx.FONT_TINY, text, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
 	function getTime() {
