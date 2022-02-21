@@ -9,7 +9,8 @@ using Toybox.Lang as Lang;
  **/
 module Pomodoro {
 
-    const SECOND = 60000;
+    const SECOND = 1000;
+    const MINUTE = 60 * SECOND;
 
 	enum {
 		STATE_READY,
@@ -120,7 +121,7 @@ module Pomodoro {
 
 	function beginMinuteCountdown() {
 		var countdown = new Lang.Method(Pomodoro, :countdownMinutes);
-		minuteTimer.start(countdown, SECOND, true);
+		minuteTimer.start(countdown, MINUTE, true);
 	}
 
 	function makeTickingSound() {
@@ -135,7 +136,7 @@ module Pomodoro {
 	function beginTickingIfEnabled() {
 		if (shouldTick()) {
 			var makeTick = new Lang.Method(Pomodoro, :makeTickingSound);
-			tickTimer.start(makeTick, 1000, true);
+			tickTimer.start(makeTick, SECOND, true);
 		}
 	}
 
