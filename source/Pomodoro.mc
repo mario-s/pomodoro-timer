@@ -37,22 +37,28 @@ module Pomodoro {
 		tickTimer = new Timer.Timer();
 
 		// continuously refreshes current time displayed
-		beginMinuteCountdown();
+		startMinuteTimer();
     }
 
-	function vibrate(dutyCycle, length) {
-		if (Attention has :vibrate) {
-			Attention.vibrate([new Attention.VibeProfile(
-						dutyCycle, length)]);
-		}
+    function startMinuteTimer() {
+		var func = new Lang.Method(Pomodoro, :onMinuteChanged);
+		minuteTimer.start(func, MINUTE, true);
 	}
 
-	// if not muted
-	function playTone(tone) {
-		var isMuted =  App.getApp().getProperty("muteSounds");
-		if (!isMuted && Attention has :playTone) {
-			Attention.playTone(tone);
+    function onMinuteChanged() {
+		minutesLeft -= 1;
+
+		if (minutesLeft == 0) {
+			if(isRunning()) {
+				transitionToState(STATE_PAUSE);
+			} else if (isPaused()) {
+				transitionToState(STATE_READY);
+			} else {
+				// nothing to do in ready state
+			}
 		}
+
+		Ui.requestUpdate();
 	}
 
 	function isPaused() {
@@ -65,6 +71,46 @@ module Pomodoro {
 
 	function isReady() {
 		return currentState == STATE_READY;
+	}
+
+	function transitionToState(targetState) {
+		stopTimers();
+		currentState = targetState;
+
+		if( targetState == STATE_READY ) {
+			playTone(7); // Attention.TONE_INTERVAL_ALERT
+			vibrate(100, 1500);
+
+			pomodoroIteration += 1;
+		} else if(targetState==STATE_RUNNING) {
+			playTone(1); // Attention.TONE_START
+			vibrate(75, 1500);
+
+			resetPomodoroMinutes();
+			startSecondsTimer();
+		} else { // targetState == STATE_PAUSE
+			playTone(10); // Attention.TONE_LAP
+			vibrate(100, 1500);
+
+			resetPauseMinutes();
+		}
+
+		startMinuteTimer();
+	}
+
+    // if not muted
+	function playTone(tone) {
+		var isMuted =  App.getApp().getProperty("muteSounds");
+		if (!isMuted && Attention has :playTone) {
+			Attention.playTone(tone);
+		}
+	}
+
+    function vibrate(dutyCycle, length) {
+		if (Attention has :vibrate) {
+			Attention.vibrate([new Attention.VibeProfile(
+						dutyCycle, length)]);
+		}
 	}
 
 	function isLongBreak() {
@@ -103,70 +149,25 @@ module Pomodoro {
 		transitionToState(STATE_READY);
 	}
 
-	function countdownMinutes() {
-		minutesLeft -= 1;
-
-		if (minutesLeft == 0) {
-			if(isRunning()) {
-				transitionToState(STATE_PAUSE);
-			} else if (isPaused()) {
-				transitionToState(STATE_READY);
-			} else {
-				// nothing to do in ready state
-			}
-		}
-
-		Ui.requestUpdate();
+    // one tick every second
+	function startSecondsTimer() {
+		var func = new Lang.Method(Pomodoro, :onSecondUpdate);
+		tickTimer.start(func, SECOND, true);
 	}
 
-	function beginMinuteCountdown() {
-		var countdown = new Lang.Method(Pomodoro, :countdownMinutes);
-		minuteTimer.start(countdown, MINUTE, true);
+	function onSecondUpdate() {
+        if (shouldTick()) {
+		    vibrate(tickStrength, tickDuration);
+        }
+        //TODO UI refresh to paint circle
 	}
 
-	function makeTickingSound() {
-		vibrate(tickStrength, tickDuration);
-	}
-
-	function shouldTick() {
+    function shouldTick() {
 		return App.getApp().getProperty("tickStrength") > 0;
-	}
-
-	// one tick every second
-	function beginTickingIfEnabled() {
-		if (shouldTick()) {
-			var makeTick = new Lang.Method(Pomodoro, :makeTickingSound);
-			tickTimer.start(makeTick, SECOND, true);
-		}
 	}
 
 	function stopTimers() {
 		tickTimer.stop();
 		minuteTimer.stop();
-	}
-
-	function transitionToState(targetState) {
-		stopTimers();
-		currentState = targetState;
-
-		if( targetState == STATE_READY ) {
-			playTone(7); // Attention.TONE_INTERVAL_ALERT
-			vibrate(100, 1500);
-
-			pomodoroIteration += 1;
-		} else if(targetState==STATE_RUNNING) {
-			playTone(1); // Attention.TONE_START
-			vibrate(75, 1500);
-
-			resetPomodoroMinutes();
-			beginTickingIfEnabled();
-		} else { // targetState == STATE_PAUSE
-			playTone(10); // Attention.TONE_LAP
-			vibrate(100, 1500);
-
-			resetPauseMinutes();
-		}
-
-		beginMinuteCountdown();
 	}
 }
