@@ -18,10 +18,10 @@ module Pomodoro {
 		STATE_PAUSE
 	}
 
-	var pomodoroTimer;
+	var minutesTimer;
 	var secondsTimer;
 	var currentState = STATE_READY;
-	var pomodoroIteration = 1;
+	var iteration = 1;
 	var minutesLeft = 0;
 	// cached app properties to reduce battery load
 	var tickStrength;
@@ -33,7 +33,7 @@ module Pomodoro {
 	}
 
     function startTimers() {
-        pomodoroTimer = new Timer.Timer();
+        minutesTimer = new Timer.Timer();
 		secondsTimer = new Timer.Timer();
 
 		startSecondsTimer();
@@ -57,7 +57,7 @@ module Pomodoro {
 
     function startMinuteTimer() {
 		var func = new Lang.Method(Pomodoro, :onMinuteChanged);
-		pomodoroTimer.start(func, MINUTE, true);
+		minutesTimer.start(func, MINUTE, true);
 	}
 
     function onMinuteChanged() {
@@ -92,7 +92,7 @@ module Pomodoro {
 			playTone(7);
 			vibrate(100, 1500);
 
-			pomodoroIteration += 1;
+			iteration += 1;
 		} else if(targetState == STATE_RUNNING) {
 			playTone(1);
 			vibrate(75, 1500);
@@ -125,7 +125,7 @@ module Pomodoro {
 
 	function isLongBreak() {
 		var groupLength = App.getApp().getProperty("numberOfPomodorosBeforeLongBreak");
-		return (pomodoroIteration % groupLength) == 0;
+		return (iteration % groupLength) == 0;
 	}
 
 	function resetPauseMinutes() {
@@ -139,22 +139,12 @@ module Pomodoro {
 		minutesLeft = App.getApp().getProperty("pomodoroLength");
 	}
 
-	// for view
-	function getMinutesLeft() {
-		return minutesLeft.format("%02d");
-	}
-
-	// for view
-	function getIteration() {
-		return pomodoroIteration;
-	}
-
 	// called by StopMenuDelegate
 	function resetFromMenu() {
-		playTone(9); // Attention.TONE_RESET
+		playTone(9);
 		vibrate(50, 1500);
 
-		pomodoroIteration = 0;
+		iteration = 0;
 		transitionToState(STATE_READY);
 	}
 
@@ -164,6 +154,6 @@ module Pomodoro {
 	}
 
 	function stopMinuteTimer() {
-		pomodoroTimer.stop();
+		minutesTimer.stop();
 	}
 }

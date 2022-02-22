@@ -29,15 +29,15 @@ class PomodoroView extends Ui.View {
 		View.initialize();
 	}
 
-	function onLayout( dc ) {
+	function onLayout(dc) {
 		loadLabels();
 
 		var height = dc.getHeight();
 		centerX = dc.getWidth() / 2;
 		centerY = height / 2;
+
 		var mediumOffsetHalf = Gfx.getFontHeight(Gfx.FONT_MEDIUM) / 2;
 		var mildOffset = Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD);
-
 
 		self.timeOffset = height - mildOffset;
 		self.pomodoroOffset = 5;
@@ -103,13 +103,13 @@ class PomodoroView extends Ui.View {
 	}
 
 	private function drawStage(dc) {
-		var label = "Pomodoro #" + Pomodoro.getIteration();
+		var label = "Pomodoro #" + Pomodoro.iteration;
 		dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
 		dc.drawText(self.centerX, self.pomodoroOffset, Gfx.FONT_MEDIUM, label, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
 	private function drawMinutes(dc) {
-		var minutesAsText = Pomodoro.getMinutesLeft();
+		var minutesAsText = Pomodoro.minutesLeft.format("%02d");
 		dc.drawText(self.centerX, self.minutesOffset, Gfx.FONT_NUMBER_THAI_HOT, minutesAsText, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
@@ -124,7 +124,7 @@ class PomodoroView extends Ui.View {
 
 	private function drawTime(dc) {
 		dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
-		dc.drawText(self.centerX, self.timeOffset, Gfx.FONT_NUMBER_MILD, self.getTime(), Gfx.TEXT_JUSTIFY_CENTER);
+		dc.drawText(self.centerX, self.timeOffset, Gfx.FONT_NUMBER_MILD, getTime(), Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
 	private function getTime() {
