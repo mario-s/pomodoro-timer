@@ -96,15 +96,16 @@ class PomodoroView extends Ui.View {
 		drawRemainingLabel(dc);
 	}
 
+	private function drawReady(dc) {
+		drawStage(dc);
+		dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
+		dc.drawText(self.centerX, self.readyLabelOffset, Gfx.FONT_LARGE, self.readyLabel, Gfx.TEXT_JUSTIFY_CENTER);
+	}
+
 	private function drawStage(dc) {
 		var label = "Pomodoro #" + Pomodoro.getIteration();
 		dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
 		dc.drawText(self.centerX, self.pomodoroOffset, Gfx.FONT_MEDIUM, label, Gfx.TEXT_JUSTIFY_CENTER);
-	}
-
-	private function drawReady(dc) {
-		dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
-		dc.drawText(self.centerX, self.readyLabelOffset, Gfx.FONT_LARGE, self.readyLabel, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
 	private function drawMinutes(dc) {
