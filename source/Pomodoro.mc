@@ -3,6 +3,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.Attention as Attention;
 using Toybox.Timer as Timer;
 using Toybox.Lang as Lang;
+using Toybox.Test;
 
 /**
  * Core module.
@@ -155,5 +156,19 @@ module Pomodoro {
 
 	function stopMinuteTimer() {
 		minutesTimer.stop();
+	}
+
+	(:test)
+	function testShouldTick(logger as Logger) {
+		logger.debug("Test for shouldTick should not be true.");
+		return !shouldTick();
+	}
+
+	(:test)
+	function testOnMinuteChanged_GtOne(logger as Logger) {
+		logger.debug("Test for onMinuteChanged greater than 1.");
+		minutesLeft = 1;
+		onMinuteChanged();
+		return isReady() && minutesLeft == 0;
 	}
 }
