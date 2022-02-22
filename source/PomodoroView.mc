@@ -130,7 +130,7 @@ class PomodoroView extends Ui.View {
 		var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
 		return Lang.format("$1$:$2$", [
 			today.hour.format("%02d"),
-			today.min.format("%02d"),
+			today.min.format("%02d")
 		]);
 	}
 }
