@@ -1,6 +1,7 @@
 using Toybox.Application as App;
 using Toybox.Attention as Attention;
 using Toybox.WatchUi as Ui;
+using Toybox.Test;
 using Pomodoro;
 
 class PomodoroDelegate extends Ui.BehaviorDelegate {
@@ -31,6 +32,13 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 		}
 
 		return true;
+	}
+
+	(:test)
+	function testOnSelect(logger as Logger) {
+		logger.debug("Test for onSelect should change to state running.");
+		PomodoroDelegate.onSelect();
+		return Pomodoro.isRunning();
 	}
 
 	function onMenu() {

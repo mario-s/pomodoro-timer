@@ -152,7 +152,7 @@ module Pomodoro {
 	}
 
 	(:test)
-	function testTransitionToState_Running(logger as Logger) {
+	function testTransitionToState_Run(logger as Logger) {
 		logger.debug("Test for transitionToState should change to state running.");
 		transitionToState(STATE_RUNNING);
 		return isRunning() && iteration == 1;
