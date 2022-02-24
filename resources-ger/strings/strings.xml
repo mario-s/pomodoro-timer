@@ -1,6 +1,6 @@
 <strings>
 	<string id="AppName">PomodoroTimer</string>
-	<string id="PomodoroLength">Dauer eines Pomodoro (in Minuten)</string>
+	<string id="PomodoroDuration">Dauer eines Pomodoro (in Minuten)</string>
 	<string id="ShortBreakLength">Dauer einer kurzen Pause zwischen den Pomodoros</string>
 	<string id="LongBreakLength">Dauer einer langen Pause zwischen den Pomodoros</string>
 	<string id="NumberOfPomodorosBeforeLongBreak">Anzahl der Pomodoros in einer Gruppe</string>

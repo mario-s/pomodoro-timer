@@ -26,7 +26,7 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 
 	function onSelect() {
 		if (Pomodoro.isReady()) {
-			Pomodoro.transitionToState(Pomodoro.STATE_RUNNING);
+			Pomodoro.startFromMenu();
 			Ui.requestUpdate();
 		} else { // pomodoro is in running or break state
 			onMenu();

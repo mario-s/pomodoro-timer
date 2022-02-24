@@ -1,6 +1,6 @@
 <strings>
 	<string id="AppName">Pomodoro</string>
-	<string id="PomodoroLength">Duración del Pomodoro (en minutos)</string>
+	<string id="PomodoroDuration">Duración del Pomodoro (en minutos)</string>
 	<string id="ShortBreakLength">Duración del descanso corto entre Pomodoros</string>
 	<string id="LongBreakLength">Duración del descanso largo luego de un grupo de Pomodoros</string>
 	<string id="NumberOfPomodorosBeforeLongBreak">Cantidad de Pomodoros en un grupo</string>

@@ -73,7 +73,7 @@ module Pomodoro {
 			if(isRunning()) {
 				transitionToState(STATE_PAUSE);
 			} else if (isPaused()) {
-				transitionToState(STATE_READY);
+				transitionToState(STATE_RUNNING);
 			}
 		}
 	}
@@ -84,16 +84,16 @@ module Pomodoro {
 		minutesLeft = 1;
 		currentState = STATE_RUNNING;
 		onMinuteChanged();
-		return isPaused() && minutesLeft == 5;
+		return isPaused();
 	}
 
 	(:test)
-	function testOnMinuteChanged_ToReady(logger) {
-		logger.debug("It should change to reader after a pause state.");
+	function testOnMinuteChanged_ToRun(logger) {
+		logger.debug("It should change to running after a pause is completed.");
 		minutesLeft = 1;
 		currentState = STATE_PAUSE;
 		onMinuteChanged();
-		return isReady() && minutesLeft == 0;
+		return isRunning()  && iteration == 2;
 	}
 
 	function isPaused() {
@@ -108,11 +108,20 @@ module Pomodoro {
 		return currentState == STATE_READY;
 	}
 
+	function startFromMenu() {
+		iteration = 0;
+		transitionToState(STATE_RUNNING);
+	}
+
+	(:test)
+	function testStartFromMenu(logger) {
+		logger.debug("It should change to ready to running.");
+		startFromMenu();
+		return isRunning() && iteration == 1;
+	}
+
 	// called by StopMenuDelegate
 	function resetFromMenu() {
-		playTone(9);
-		vibrate(50, 1500);
-
 		iteration = 0;
 		transitionToState(STATE_READY);
 	}
@@ -129,15 +138,16 @@ module Pomodoro {
 		stopMinuteTimer();
 		currentState = targetState;
 
-		if(targetState == STATE_READY) {
+		if(isReady()) {
 			playTone(7);
 			vibrate(100, 1500);
 
-			iteration += 1;
-		} else if(targetState == STATE_RUNNING) {
+			iteration = 1;
+		} else if(isRunning()) {
 			playTone(1);
 			vibrate(75, 1500);
 
+			iteration += 1;
 			resetPomodoroMinutes();
 			startSecondsTimer();
 		} else { // targetState == STATE_PAUSE
@@ -148,13 +158,6 @@ module Pomodoro {
 		}
 
 		startMinuteTimer();
-	}
-
-	(:test)
-	function testTransitionToState_Run(logger) {
-		logger.debug("It should change to state running with first iteration.");
-		transitionToState(STATE_RUNNING);
-		return isRunning() && iteration == 1;
 	}
 
 	function playTone(tone) {
@@ -176,20 +179,13 @@ module Pomodoro {
 		minutesLeft = App.getApp().getProperty(breakVariant);
 	}
 
-	(:test)
-	function testResetPauseMinutes(logger) {
-		logger.debug("It should reset the pause to 5 minutes.");
-		resetPauseMinutes();
-		return minutesLeft == 5;
-	}
-
 	function isLongBreak() {
 		var groupLength = App.getApp().getProperty("numberOfPomodorosBeforeLongBreak");
 		return (iteration % groupLength) == 0;
 	}
 
 	function resetPomodoroMinutes() {
-		minutesLeft = App.getApp().getProperty("pomodoroLength");
+		self.minutesLeft = App.getApp().getProperty("pomodoroDuration");
 	}
 
 	function stopTimers() {
