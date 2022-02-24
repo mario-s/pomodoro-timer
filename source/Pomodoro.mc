@@ -3,7 +3,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.Attention as Attention;
 using Toybox.Timer as Timer;
 using Toybox.Lang as Lang;
-using Toybox.Test;
+
 
 /**
  * Core module.
@@ -24,7 +24,6 @@ module Pomodoro {
 	var currentState = STATE_READY;
 	var iteration = 1;
 	var minutesLeft = 0;
-	// cached app properties to reduce battery load
 	var tickStrength;
 	var tickDuration;
 
@@ -53,12 +52,12 @@ module Pomodoro {
 	}
 
     function shouldTick() {
-		return App.getApp().getProperty("tickStrength") > 0;
+		return tickStrength > 0;
 	}
 
 	(:test)
-	function testShouldTick(logger as Logger) {
-		logger.debug("Test for shouldTick should not be true.");
+	function testShouldTick(logger) {
+		logger.debug("It should return false for shouldTick().");
 		return !shouldTick();
 	}
 
@@ -80,8 +79,8 @@ module Pomodoro {
 	}
 
 	(:test)
-	function testOnMinuteChanged_ToPause(logger as Logger) {
-		logger.debug("Test for onMinuteChanged to pause state.");
+	function testOnMinuteChanged_ToPause(logger) {
+		logger.debug("It should change to pause after a running state.");
 		minutesLeft = 1;
 		currentState = STATE_RUNNING;
 		onMinuteChanged();
@@ -89,8 +88,8 @@ module Pomodoro {
 	}
 
 	(:test)
-	function testOnMinuteChanged_ToReady(logger as Logger) {
-		logger.debug("Test for onMinuteChanged to ready state.");
+	function testOnMinuteChanged_ToReady(logger) {
+		logger.debug("It should change to reader after a pause state.");
 		minutesLeft = 1;
 		currentState = STATE_PAUSE;
 		onMinuteChanged();
@@ -119,8 +118,8 @@ module Pomodoro {
 	}
 
 	(:test)
-	function testResetFromMenu(logger as Logger) {
-		logger.debug("Test for resetFromMenu should change to state READY.");
+	function testResetFromMenu(logger) {
+		logger.debug("It should change to ready on a reset from the menu.");
 		iteration = 4;
 		resetFromMenu();
 		return isReady() && iteration == 1;
@@ -152,8 +151,8 @@ module Pomodoro {
 	}
 
 	(:test)
-	function testTransitionToState_Run(logger as Logger) {
-		logger.debug("Test for transitionToState should change to state running.");
+	function testTransitionToState_Run(logger) {
+		logger.debug("It should change to state running with first iteration.");
 		transitionToState(STATE_RUNNING);
 		return isRunning() && iteration == 1;
 	}
@@ -178,8 +177,8 @@ module Pomodoro {
 	}
 
 	(:test)
-	function testResetPauseMinutes(logger as Logger) {
-		logger.debug("Test for resetPauseMinutes should return 5 minutes for first break.");
+	function testResetPauseMinutes(logger) {
+		logger.debug("It should reset the pause to 5 minutes.");
 		resetPauseMinutes();
 		return minutesLeft == 5;
 	}

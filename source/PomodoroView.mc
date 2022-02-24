@@ -6,6 +6,7 @@ using Toybox.Time.Gregorian;
 using Toybox.Lang;
 using Pomodoro;
 
+
 /**
 * Main App view.
 **/
@@ -32,20 +33,7 @@ class PomodoroView extends Ui.View {
 	function onLayout(dc) {
 		loadLabels();
 
-		var height = dc.getHeight();
-		centerX = dc.getWidth() / 2;
-		centerY = height / 2;
-
-		var mediumOffsetHalf = Gfx.getFontHeight(Gfx.FONT_MEDIUM) / 2;
-		var mildOffset = Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD);
-
-		self.timeOffset = height - mildOffset;
-		self.pomodoroOffset = 5;
-		adjustOffsetForRoundScreen();
-
-		self.readyLabelOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_LARGE ) / 2);
-		self.minutesOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT ) / 2);
-		self.captionOffset = self.timeOffset - Gfx.getFontHeight(Gfx.FONT_TINY) - 20;
+		calculateLayout(dc.getWidth(), dc.getHeight());
 	}
 
 	private function loadLabels() {
@@ -56,7 +44,23 @@ class PomodoroView extends Ui.View {
 		readyLabel = Ui.loadResource(Rez.Strings.ReadyLabel);
 	}
 
-	private function adjustOffsetForRoundScreen() {
+	private function calculateLayout(width, height) {
+		self.centerX =  width / 2;
+		self.centerY = height / 2;
+
+		var mediumOffsetHalf = Gfx.getFontHeight(Gfx.FONT_MEDIUM) / 2;
+		var mildOffset = Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD);
+
+		self.timeOffset = height - mildOffset;
+		calculatePomodoroOffset();
+
+		self.readyLabelOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_LARGE) / 2);
+		self.minutesOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT) / 2);
+		self.captionOffset = self.timeOffset - Gfx.getFontHeight(Gfx.FONT_TINY) - 20;
+	}
+
+	private function calculatePomodoroOffset() {
+		self.pomodoroOffset = 5;
 		var screenShape = System.getDeviceSettings().screenShape;
 		if (System.SCREEN_SHAPE_RECTANGLE != screenShape) {
 			self.pomodoroOffset += Gfx.getFontHeight(Gfx.FONT_MEDIUM);
