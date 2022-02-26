@@ -1,5 +1,5 @@
 <settings>
-	<setting propertyKey="@Properties.pomodoroLength" title="@Strings.PomodoroLength">
+	<setting propertyKey="@Properties.pomodoroDuration" title="@Strings.PomodoroDuration">
 		<settingConfig type="numeric" min="1" />
 	</setting>
 	<setting propertyKey="@Properties.shortBreakLength" title="@Strings.ShortBreakLength">

@@ -1,20 +1,27 @@
 using Toybox.Application as App;
-using Toybox.Timer as Timer;
+using Pomodoro;
+
 
 class PomodoroApp extends App.AppBase {
 
 	function initialize() {
 		AppBase.initialize();
+		Pomodoro.initialize();
+	}
+
+	(:test)
+	function testInitialize(logger) {
+		logger.debug("It should initialize the core module.");
+		initialize();
+		return Pomodoro.isReady();
 	}
 
 	function onStart(state) {
-		timer = new Timer.Timer();
-		tickTimer = new Timer.Timer();
+		Pomodoro.startTimers();
 	}
 
 	function onStop(state) {
-		tickTimer.stop();
-		timer.stop();
+		Pomodoro.stopTimers();
 	}
 
 	function getInitialView() {
