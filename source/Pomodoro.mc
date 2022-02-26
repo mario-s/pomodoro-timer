@@ -161,9 +161,11 @@ module Pomodoro {
 	}
 
 	function playTone(tone) {
-		var isMuted =  App.getApp().getProperty("muteSounds");
-		if (!isMuted && Attention has :playTone) {
-			Attention.playTone(tone);
+		if (Attention has :playTone) {
+			var isMuted =  App.getApp().getProperty("muteSounds");
+			if (!isMuted) {
+				Attention.playTone(tone);
+			}
 		}
 	}
 
