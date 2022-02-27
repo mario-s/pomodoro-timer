@@ -3,13 +3,14 @@ using Toybox.WatchUi as Ui;
 using Toybox.Attention as Attention;
 using Toybox.Timer as Timer;
 using Toybox.Lang as Lang;
-
+using Toybox.Math;
 
 /**
  * Core module.
  **/
 module Pomodoro {
 
+	const FULL_ARC = 360;
     const SECOND = 1000;
     const MINUTE = 60 * SECOND;
 
@@ -24,6 +25,9 @@ module Pomodoro {
 	var currentState = STATE_READY;
 	var iteration = 1;
 	var minutesLeft = 0;
+	// length of the intervall in ms
+	var intervalLength = 0;
+	var intervalCountdown = 0;
 	var tickStrength;
 	var tickDuration;
 
@@ -40,14 +44,17 @@ module Pomodoro {
     }
 
 	function startSecondsTimer() {
-		var func = new Lang.Method(Pomodoro, :onSecondUpdate);
+		var func = new Lang.Method(Pomodoro, :onSecondChanged);
 		secondsTimer.start(func, SECOND, true);
 	}
 
-	function onSecondUpdate() {
+	function onSecondChanged() {
+		intervalCountdown = intervalCountdown - SECOND;
+
         if (shouldTick()) {
 		    vibrate(tickStrength, tickDuration);
         }
+
         Ui.requestUpdate();
 	}
 
@@ -59,6 +66,21 @@ module Pomodoro {
 	function testShouldTick(logger) {
 		logger.debug("It should return false for shouldTick().");
 		return !shouldTick();
+	}
+
+	function getCountdownDegree() {
+		var deg = FULL_ARC * (intervalLength - intervalCountdown) / intervalLength;
+		return Math.ceil(FULL_ARC - deg);
+	}
+
+	(:test)
+	function testgetCountdownDegree_TenSeconds(logger) {
+		logger.debug("It should return 358° when 10 seconds are past.");
+		initInterval(25);
+		for(var i = 0; i < 10; i++) {
+			onSecondChanged();
+		}
+		return getCountdownDegree() == 358 && intervalCountdown == 1490000;
 	}
 
     function startMinuteTimer() {
@@ -178,7 +200,7 @@ module Pomodoro {
 
 	function resetPauseMinutes() {
 		var breakVariant =  isLongBreak() ? "longBreakLength" : "shortBreakLength";
-		minutesLeft = App.getApp().getProperty(breakVariant);
+		initInterval(App.getApp().getProperty(breakVariant));
 	}
 
 	function isLongBreak() {
@@ -187,7 +209,13 @@ module Pomodoro {
 	}
 
 	function resetPomodoroMinutes() {
-		self.minutesLeft = App.getApp().getProperty("pomodoroDuration");
+		initInterval(App.getApp().getProperty("pomodoroDuration"));
+	}
+
+	function initInterval(length) {
+		minutesLeft = length;
+		intervalLength = length * MINUTE;
+		intervalCountdown = intervalLength;
 	}
 
 	function stopTimers() {
