@@ -25,7 +25,6 @@ module Pomodoro {
 	var secondsTimer;
 	var currentState = STATE_READY;
 	var iteration = 1;
-	var minutesLeft = 0;
 	// length of the intervall in ms
 	var intervalLength = 0;
 	var intervalCountdown = 0;
@@ -123,7 +122,6 @@ module Pomodoro {
 	(:test)
 	function testOnSecondChanged_ToPause(logger) {
 		logger.debug("It should change to pause after a running state.");
-		minutesLeft = 1;
 		currentState = STATE_RUNNING;
 		onSecondChanged();
 		return isPaused();
@@ -132,7 +130,6 @@ module Pomodoro {
 	(:test)
 	function testOnSecondChanged_ToRun(logger) {
 		logger.debug("It should change to running after a pause is completed.");
-		minutesLeft = 1;
 		currentState = STATE_PAUSE;
 		onSecondChanged();
 		return isRunning()  && iteration == 2;
@@ -229,7 +226,6 @@ module Pomodoro {
 	}
 
 	function initInterval(length) {
-		minutesLeft = length;
 		intervalLength = length * MINUTE;
 		intervalCountdown = intervalLength;
 	}
