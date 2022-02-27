@@ -74,7 +74,7 @@ module Pomodoro {
 	}
 
 	(:test)
-	function testgetCountdownDegree_TenSeconds(logger) {
+	function testGetCountdownDegree_TenSeconds(logger) {
 		logger.debug("It should return 358° when 10 seconds are past.");
 		initInterval(25);
 		for(var i = 0; i < 10; i++) {
