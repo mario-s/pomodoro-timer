@@ -22,7 +22,6 @@ module Pomodoro {
 		STATE_PAUSE
 	}
 
-	var minutesTimer;
 	var secondsTimer;
 	var currentState = STATE_READY;
 	var iteration = 1;
@@ -39,7 +38,6 @@ module Pomodoro {
 	}
 
     function startTimers() {
-        minutesTimer = new Timer.Timer();
 		secondsTimer = new Timer.Timer();
 
 		startSecondsTimer();
@@ -58,6 +56,14 @@ module Pomodoro {
         if (shouldTick()) {
 		    vibrate(tickStrength, tickDuration);
         }
+
+		if (getMinutesLeft() == 0) {
+			if(isRunning()) {
+				transitionToState(STATE_PAUSE);
+			} else if (isPaused()) {
+				transitionToState(STATE_RUNNING);
+			}
+		}
 
         Ui.requestUpdate();
 	}
@@ -114,38 +120,21 @@ module Pomodoro {
 		return getMinutesLeft() == 1;
 	}
 
-    function startMinuteTimer() {
-		var func = new Lang.Method(Pomodoro, :onMinuteChanged);
-		minutesTimer.start(func, MINUTE, true);
-	}
-
-    function onMinuteChanged() {
-		minutesLeft -= 1;
-
-		if (minutesLeft == 0) {
-			if(isRunning()) {
-				transitionToState(STATE_PAUSE);
-			} else if (isPaused()) {
-				transitionToState(STATE_RUNNING);
-			}
-		}
-	}
-
 	(:test)
-	function testOnMinuteChanged_ToPause(logger) {
+	function testOnSecondChanged_ToPause(logger) {
 		logger.debug("It should change to pause after a running state.");
 		minutesLeft = 1;
 		currentState = STATE_RUNNING;
-		onMinuteChanged();
+		onSecondChanged();
 		return isPaused();
 	}
 
 	(:test)
-	function testOnMinuteChanged_ToRun(logger) {
+	function testOnSecondChanged_ToRun(logger) {
 		logger.debug("It should change to running after a pause is completed.");
 		minutesLeft = 1;
 		currentState = STATE_PAUSE;
-		onMinuteChanged();
+		onSecondChanged();
 		return isRunning()  && iteration == 2;
 	}
 
@@ -188,7 +177,6 @@ module Pomodoro {
 	}
 
 	function transitionToState(targetState) {
-		stopMinuteTimer();
 		currentState = targetState;
 
 		if(isReady()) {
@@ -202,15 +190,12 @@ module Pomodoro {
 
 			iteration += 1;
 			resetPomodoroMinutes();
-			startSecondsTimer();
 		} else { // targetState == STATE_PAUSE
 			playTone(10);
 			vibrate(100, 1500);
 
 			resetPauseMinutes();
 		}
-
-		startMinuteTimer();
 	}
 
 	function playTone(tone) {
@@ -251,10 +236,5 @@ module Pomodoro {
 
 	function stopTimers() {
 		secondsTimer.stop();
-		stopMinuteTimer();
-	}
-
-	function stopMinuteTimer() {
-		minutesTimer.stop();
 	}
 }
