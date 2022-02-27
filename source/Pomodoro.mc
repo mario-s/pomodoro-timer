@@ -84,7 +84,27 @@ module Pomodoro {
 	}
 
 	function getMinutesLeft() {
-		return minutesLeft;
+		return Math.ceil(intervalCountdown.toFloat() / MINUTE);
+	}
+
+	(:test)
+	function testGetMinutesLeft_2Min(logger) {
+		logger.debug("It should return 2 after 10 seconds past.");
+		initInterval(2);
+		for(var i = 0; i < 10; i++) {
+			onSecondChanged();
+		}
+		return getMinutesLeft() == 2;
+	}
+
+	(:test)
+	function testGetMinutesLeft_1Min(logger) {
+		logger.debug("It should return 1 after 60 seconds past.");
+		initInterval(2);
+		for(var i = 0; i < 60; i++) {
+			onSecondChanged();
+		}
+		return getMinutesLeft() == 1;
 	}
 
     function startMinuteTimer() {
