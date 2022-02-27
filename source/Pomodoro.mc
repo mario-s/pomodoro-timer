@@ -11,7 +11,9 @@ using Toybox.Math;
 module Pomodoro {
 
 	const FULL_ARC = 360;
+	// 1 second in ms
     const SECOND = 1000;
+	// 1 minute in ms
     const MINUTE = 60 * SECOND;
 
 	enum {
@@ -49,7 +51,9 @@ module Pomodoro {
 	}
 
 	function onSecondChanged() {
-		intervalCountdown = intervalCountdown - SECOND;
+		if (isRunning() || isPaused()) {
+			intervalCountdown = intervalCountdown - SECOND;
+		}
 
         if (shouldTick()) {
 		    vibrate(tickStrength, tickDuration);
@@ -77,6 +81,7 @@ module Pomodoro {
 	function testGetCountdownDegree(logger) {
 		logger.debug("It should return 358° when 10 seconds are past.");
 		initInterval(25);
+		currentState = STATE_RUNNING;
 		for(var i = 0; i < 10; i++) {
 			onSecondChanged();
 		}
@@ -91,6 +96,7 @@ module Pomodoro {
 	function testGetMinutesLeft_2Min(logger) {
 		logger.debug("It should return 2 after 10 seconds past.");
 		initInterval(2);
+		startFromMenu();
 		for(var i = 0; i < 10; i++) {
 			onSecondChanged();
 		}
@@ -101,6 +107,7 @@ module Pomodoro {
 	function testGetMinutesLeft_1Min(logger) {
 		logger.debug("It should return 1 after 60 seconds past.");
 		initInterval(2);
+		startFromMenu();
 		for(var i = 0; i < 60; i++) {
 			onSecondChanged();
 		}
