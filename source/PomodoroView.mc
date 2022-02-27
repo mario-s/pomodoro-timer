@@ -113,13 +113,13 @@ class PomodoroView extends Ui.View {
 	}
 
 	private function drawMinutes(dc) {
-		var minutesAsText = Pomodoro.minutesLeft.format("%02d");
+		var minutesAsText = Pomodoro.getMinutesLeft().format("%02d");
 		dc.drawText(self.centerX, self.minutesOffset, Gfx.FONT_NUMBER_THAI_HOT, minutesAsText, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
 	private function drawRemainingLabel(dc) {
 		var text = self.remainingMinutes;
-		var minutes = Pomodoro.minutesLeft;
+		var minutes = Pomodoro.getMinutesLeft();
 		if (minutes <= 1) {
 			text = self.remainingMinute;
 		}
