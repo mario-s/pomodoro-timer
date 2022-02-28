@@ -24,30 +24,28 @@ module Pomodoro {
 		STATE_PAUSE
 	}
 
-	var secondsTimer;
+	var timer;
+
 	var currentState = STATE_READY;
 	var iteration = 1;
+
 	// length of the intervall in ms
 	var intervalLength = 0;
 	var intervalCountdown = 0;
+
 	var tickStrength;
 	var tickDuration;
 
 	function initialize() {
 		tickStrength = App.getApp().getProperty("tickStrength");
 		tickDuration = App.getApp().getProperty("tickDuration");
+		timer = new Timer.Timer();
 	}
 
-    function startTimers() {
-		secondsTimer = new Timer.Timer();
-
-		startSecondsTimer();
-    }
-
-	function startSecondsTimer() {
+    function startTimer() {
 		var func = new Lang.Method(Pomodoro, :onSecondChanged);
-		secondsTimer.start(func, SECOND, true);
-	}
+		timer.start(func, SECOND, true);
+    }
 
 	function onSecondChanged() {
 		if (isRunning() || isPaused()) {
@@ -232,7 +230,7 @@ module Pomodoro {
 		intervalCountdown = intervalLength;
 	}
 
-	function stopTimers() {
-		secondsTimer.stop();
+	function stopTimer() {
+		timer.stop();
 	}
 }
