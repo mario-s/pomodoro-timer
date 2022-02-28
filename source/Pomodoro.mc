@@ -11,6 +11,8 @@ using Toybox.Math;
 module Pomodoro {
 
 	const FULL_ARC = 360;
+	const RECTANGULAR = 90;
+
 	// 1 second in ms
     const SECOND = 1000;
 	// 1 minute in ms
@@ -79,18 +81,18 @@ module Pomodoro {
 
 	function getCountdownDegree() {
 		var deg = FULL_ARC * (intervalLength - intervalCountdown) / intervalLength;
-		return Math.ceil(FULL_ARC - deg);
+		return RECTANGULAR + Math.ceil(deg);
 	}
 
 	(:test)
 	function testGetCountdownDegree(logger) {
-		logger.debug("It should return 358° when 10 seconds are past.");
+		logger.debug("It should return 92° when 10 seconds are past.");
 		initInterval(25);
 		currentState = STATE_RUNNING;
 		for(var i = 0; i < 10; i++) {
 			onSecondChanged();
 		}
-		return getCountdownDegree() == 358 && intervalCountdown == 1490000;
+		return getCountdownDegree() == 92 && intervalCountdown == 1490000;
 	}
 
 	function getMinutesLeft() {

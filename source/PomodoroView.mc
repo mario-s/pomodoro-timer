@@ -11,6 +11,7 @@ using Pomodoro;
 * Main App view.
 **/
 class PomodoroView extends Ui.View {
+
 	private var remainingMinutes;
 	private var remainingMinute;
 	private var shortBreakLabel;
@@ -19,6 +20,7 @@ class PomodoroView extends Ui.View {
 
 	private var centerX;
 	private var centerY;
+	private var radius;
 
 	private var pomodoroOffset;
 	private var captionOffset;
@@ -47,6 +49,11 @@ class PomodoroView extends Ui.View {
 	private function calculateLayout(width, height) {
 		self.centerX =  width / 2;
 		self.centerY = height / 2;
+		if (centerY < centerY) {
+			radius = centerY - 2;
+		} else {
+			radius = centerY - 2;
+		}
 
 		var mediumOffsetHalf = Gfx.getFontHeight(Gfx.FONT_MEDIUM) / 2;
 		var mildOffset = Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD);
@@ -86,6 +93,7 @@ class PomodoroView extends Ui.View {
 	private function drawBreak(dc) {
 		var label = Pomodoro.isLongBreak() ? self.longBreakLabel : self.shortBreakLabel;
 		dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_TRANSPARENT);
+		drawCountdown(dc);
 		dc.drawText(self.centerX, self.pomodoroOffset, Gfx.FONT_MEDIUM, label, Gfx.TEXT_JUSTIFY_CENTER);
 		drawMinutes(dc);
 		dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_TRANSPARENT);
@@ -95,6 +103,7 @@ class PomodoroView extends Ui.View {
 	private function drawRunning(dc) {
 		drawStage(dc);
 		dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
+		drawCountdown(dc);
 		drawMinutes(dc);
 		dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
 		drawRemainingLabel(dc);
@@ -110,6 +119,11 @@ class PomodoroView extends Ui.View {
 		var label = "Pomodoro #" + Pomodoro.iteration;
 		dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
 		dc.drawText(self.centerX, self.pomodoroOffset, Gfx.FONT_MEDIUM, label, Gfx.TEXT_JUSTIFY_CENTER);
+	}
+
+	private function drawCountdown(dc) {
+		var degreeEnd = Pomodoro.getCountdownDegree();
+		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, Pomodoro.RECTANGULAR, degreeEnd);
 	}
 
 	private function drawMinutes(dc) {
