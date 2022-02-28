@@ -17,11 +17,11 @@ class PomodoroApp extends App.AppBase {
 	}
 
 	function onStart(state) {
-		Pomodoro.startTimers();
+		Pomodoro.startTimer();
 	}
 
 	function onStop(state) {
-		Pomodoro.stopTimers();
+		Pomodoro.stopTimer();
 	}
 
 	function getInitialView() {
