@@ -1,8 +1,8 @@
 <properties>
 	<property id="pomodoroDuration" type="number">25</property>
-	<property id="shortBreakLength" type="number">5</property>
-	<property id="longBreakLength" type="number">30</property>
-	<property id="numberOfPomodorosBeforeLongBreak" type="number">4</property>
+	<property id="shortBreakDuration" type="number">5</property>
+	<property id="longBreakDuration" type="number">30</property>
+	<property id="pomodorosBeforeLongBreak" type="number">4</property>
 	<property id="tickStrength" type="number">0</property>
 	<property id="tickDuration" type="number">80</property>
 	<property id="muteSounds" type="boolean">false</property>

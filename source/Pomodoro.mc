@@ -212,12 +212,12 @@ module Pomodoro {
 	}
 
 	function resetPauseMinutes() {
-		var breakVariant =  isLongBreak() ? "longBreakLength" : "shortBreakLength";
+		var breakVariant =  isLongBreak() ? "longBreakDuration" : "shortBreakDuration";
 		initInterval(App.getApp().getProperty(breakVariant));
 	}
 
 	function isLongBreak() {
-		var groupLength = App.getApp().getProperty("numberOfPomodorosBeforeLongBreak");
+		var groupLength = App.getApp().getProperty("pomodorosBeforeLongBreak");
 		return (iteration % groupLength) == 0;
 	}
 

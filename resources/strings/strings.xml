@@ -1,9 +1,9 @@
 <strings>
     <string id="AppName">Pomodoro</string>
-    <string id="PomodoroDuration">The length of one Pomodoro (in minutes)</string>
-    <string id="ShortBreakLength">The length of a short break between Pomodoros</string>
-    <string id="LongBreakLength">The length of the long break after a group of Pomodoros</string>
-    <string id="NumberOfPomodorosBeforeLongBreak">The number of Pomodoros in a group</string>
+    <string id="PomodoroDuration">The duration of one Pomodoro (in minutes)</string>
+    <string id="ShortBreakDuration">The duration of a short break</string>
+    <string id="LongBreakDuration">The duration of the long break</string>
+    <string id="PomodorosBeforeLongBreak">The number of Pomodoros in a group</string>
 	<string id="TickStrength">Strength of the vibration on every tick</string>
 	<string id="TickDuration">Duration of the vibration on every tick</string>
 	<string id="MuteSounds">Mute sounds</string>
