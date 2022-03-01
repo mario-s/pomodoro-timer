@@ -11,13 +11,10 @@
 	<setting propertyKey="@Properties.pomodorosBeforeLongBreak" title="@Strings.PomodorosBeforeLongBreak">
 		<settingConfig type="numeric" min="1" />
 	</setting>
-	<setting propertyKey="@Properties.tickStrength" title="@Strings.TickStrength">
-		<settingConfig type="numeric" min="0" max="100" />
+	<setting propertyKey="@Properties.vibrateOnChange" title="@Strings.VibrateOnChange">
+		<settingConfig type="boolean" />
 	</setting>
-	<setting propertyKey="@Properties.tickDuration" title="@Strings.TickDuration">
-		<settingConfig type="numeric" min="80" max="700" />
-	</setting>
-	<setting propertyKey="@Properties.muteSounds" title="@Strings.MuteSounds">
+	<setting propertyKey="@Properties.soundOnChange" title="@Strings.SoundOnChange">
 		<settingConfig type="boolean" />
 	</setting>
 </settings>

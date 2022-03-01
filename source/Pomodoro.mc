@@ -34,12 +34,13 @@ module Pomodoro {
 	var intervalLength = 0;
 	var intervalCountdown = 0;
 
-	var tickStrength;
-	var tickDuration;
+	var isSoundOnChange = true;
+	var isVibrateOnChange = true;
 
 	function initialize() {
-		tickStrength = App.getApp().getProperty("tickStrength");
-		tickDuration = App.getApp().getProperty("tickDuration");
+		isSoundOnChange =  App.getApp().getProperty("soundOnChange");
+		isVibrateOnChange = App.getApp().getProperty("vibrateOnChange");
+
 		timer = new Timer.Timer();
 	}
 
@@ -63,18 +64,14 @@ module Pomodoro {
 	function countdown() {
 		if (isRunning() || isPaused()) {
 			intervalCountdown = intervalCountdown - SECOND;
-
-			if (shouldTick()) {
-				vibrate(tickStrength, tickDuration);
-			}
 		}
 	}
 
-    function shouldTick() {
-		return tickStrength > 0;
-	}
-
 	function onIntervalFinished() {
+		if (intervalCountdown >= SECOND && intervalCountdown <= 3 * SECOND) {
+			vibrate(100, 300);
+		}
+
 		if (getMinutesLeft() == 0) {
 			if(isRunning()) {
 				transitionToState(STATE_PAUSE);
@@ -82,12 +79,6 @@ module Pomodoro {
 				transitionToState(STATE_RUNNING);
 			}
 		}
-	}
-
-	(:test)
-	function testShouldTick(logger) {
-		logger.debug("It should return false for shouldTick().");
-		return !shouldTick();
 	}
 
 	function getCountdownDegree() {
@@ -207,34 +198,31 @@ module Pomodoro {
 
 		if(isReady()) {
 			playTone(7);
-			vibrate(100, 1500);
+			vibrate(100, SECOND);
 
 			iteration = 1;
 		} else if(isRunning()) {
 			playTone(1);
-			vibrate(75, 1500);
+			vibrate(75, SECOND);
 
 			iteration += 1;
 			resetPomodoroMinutes();
 		} else if(isPaused()) {
 			playTone(10);
-			vibrate(100, 1500);
+			vibrate(100, SECOND);
 
 			resetPauseMinutes();
 		}
 	}
 
 	function playTone(tone) {
-		if (Attention has :playTone) {
-			var isMuted =  App.getApp().getProperty("muteSounds");
-			if (!isMuted) {
-				Attention.playTone(tone);
-			}
+		if (Attention has :playTone && isSoundOnChange) {
+			Attention.playTone(tone);
 		}
 	}
 
     function vibrate(dutyCycle, length) {
-		if (Attention has :vibrate) {
+		if (Attention has :vibrate && isVibrateOnChange) {
 			Attention.vibrate([new Attention.VibeProfile(
 						dutyCycle, length)]);
 		}

@@ -4,9 +4,8 @@
     <string id="ShortBreakDuration">The duration of a short break</string>
     <string id="LongBreakDuration">The duration of the long break</string>
     <string id="PomodorosBeforeLongBreak">The number of Pomodoros in a group</string>
-	<string id="TickStrength">Strength of the vibration on every tick</string>
-	<string id="TickDuration">Duration of the vibration on every tick</string>
-	<string id="MuteSounds">Mute sounds</string>
+	<string id="VibrateOnChange">Vibrate when an interval changes</string>
+	<string id="SoundOnChange">Play sound when an interval changes</string>
 
 	<string id="RemainingMinutes">minutes left</string>
 	<string id="RemainingMinute">minute left</string>
