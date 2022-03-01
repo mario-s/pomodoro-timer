@@ -49,29 +49,39 @@ module Pomodoro {
     }
 
 	function onSecondChanged() {
-		if (!isStopped()) {
-			if (isRunning() || isPaused()) {
-				intervalCountdown = intervalCountdown - SECOND;
-			}
+		if (isStopped()) {
+			// call update to change time
+			Ui.requestUpdate();
+		} else {
+			countdown();
+			onIntervalFinished();
+
+			Ui.requestUpdate();
+		}
+	}
+
+	function countdown() {
+		if (isRunning() || isPaused()) {
+			intervalCountdown = intervalCountdown - SECOND;
 
 			if (shouldTick()) {
 				vibrate(tickStrength, tickDuration);
 			}
-
-			if (getMinutesLeft() == 0) {
-				if(isRunning()) {
-					transitionToState(STATE_PAUSE);
-				} else if (isPaused()) {
-					transitionToState(STATE_RUNNING);
-				}
-			}
 		}
-
-        Ui.requestUpdate();
 	}
 
     function shouldTick() {
 		return tickStrength > 0;
+	}
+
+	function onIntervalFinished() {
+		if (getMinutesLeft() == 0) {
+			if(isRunning()) {
+				transitionToState(STATE_PAUSE);
+			} else if (isPaused()) {
+				transitionToState(STATE_RUNNING);
+			}
+		}
 	}
 
 	(:test)
