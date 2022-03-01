@@ -55,7 +55,7 @@ module Pomodoro {
 			Ui.requestUpdate();
 		} else {
 			countdown();
-			onIntervalFinished();
+			onIntervalChange();
 
 			Ui.requestUpdate();
 		}
@@ -67,7 +67,7 @@ module Pomodoro {
 		}
 	}
 
-	function onIntervalFinished() {
+	function onIntervalChange() {
 		if (intervalCountdown >= SECOND && intervalCountdown <= 3 * SECOND) {
 			vibrate(100, 300);
 		}
