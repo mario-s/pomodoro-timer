@@ -21,7 +21,8 @@ module Pomodoro {
 	enum {
 		STATE_READY,
 		STATE_RUNNING,
-		STATE_PAUSE
+		STATE_PAUSE,
+		STATE_STOPPED
 	}
 
 	var timer;
@@ -48,19 +49,21 @@ module Pomodoro {
     }
 
 	function onSecondChanged() {
-		if (isRunning() || isPaused()) {
-			intervalCountdown = intervalCountdown - SECOND;
-		}
+		if (!isStopped()) {
+			if (isRunning() || isPaused()) {
+				intervalCountdown = intervalCountdown - SECOND;
+			}
 
-        if (shouldTick()) {
-		    vibrate(tickStrength, tickDuration);
-        }
+			if (shouldTick()) {
+				vibrate(tickStrength, tickDuration);
+			}
 
-		if (getMinutesLeft() == 0) {
-			if(isRunning()) {
-				transitionToState(STATE_PAUSE);
-			} else if (isPaused()) {
-				transitionToState(STATE_RUNNING);
+			if (getMinutesLeft() == 0) {
+				if(isRunning()) {
+					transitionToState(STATE_PAUSE);
+				} else if (isPaused()) {
+					transitionToState(STATE_RUNNING);
+				}
 			}
 		}
 
@@ -95,6 +98,18 @@ module Pomodoro {
 
 	function getMinutesLeft() {
 		return Math.ceil(intervalCountdown.toFloat() / MINUTE);
+	}
+
+	(:test)
+	function testOnSecondChanged_Stop(logger) {
+		logger.debug("It should not countdown when stopped.");
+		initInterval(2);
+		startFromMenu();
+		transitionToState(STATE_STOPPED);
+		for(var i = 0; i < 60; i++) {
+			onSecondChanged();
+		}
+		return getMinutesLeft() == 2;
 	}
 
 	(:test)
@@ -147,6 +162,10 @@ module Pomodoro {
 		return currentState == STATE_READY;
 	}
 
+	function isStopped() {
+		return currentState == STATE_STOPPED;
+	}
+
 	function startFromMenu() {
 		iteration = 0;
 		transitionToState(STATE_RUNNING);
@@ -187,7 +206,7 @@ module Pomodoro {
 
 			iteration += 1;
 			resetPomodoroMinutes();
-		} else { // targetState == STATE_PAUSE
+		} else if(isPaused()) {
 			playTone(10);
 			vibrate(100, 1500);
 
