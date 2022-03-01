@@ -61,9 +61,10 @@ class PomodoroView extends Ui.View {
 		self.timeOffset = height - mildOffset;
 		calculatePomodoroOffset();
 
+		var largeFontHeight = Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT);
 		self.readyLabelOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_LARGE) / 2);
-		self.minutesOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT) / 2);
-		self.captionOffset = self.timeOffset - Gfx.getFontHeight(Gfx.FONT_TINY) - 20;
+		self.minutesOffset = self.centerY - largeFontHeight / 2;
+		self.captionOffset = self.minutesOffset + largeFontHeight + 5 - Gfx.getFontHeight(Gfx.FONT_TINY);
 	}
 
 	private function calculatePomodoroOffset() {
