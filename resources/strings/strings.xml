@@ -14,5 +14,6 @@
 	<string id="ReadyLabel">Ready!</string>
 
 	<string id="RestartMenuLabel">Restart</string>
+	<string id="StopMenuLabel">Stop</string>
 	<string id="ExitMenuLabel">Exit</string>
 </strings>

@@ -17,6 +17,9 @@ class StopMenuDelegate extends Ui.MenuInputDelegate {
 			Pomodoro.resetFromMenu();
 
 			Ui.requestUpdate();
+		} else if (item == :stop) {
+			Pomodoro.stopFromMenu();
+			Ui.requestUpdate();
 		} else if (item == :exit) {
 			System.exit();
 		}

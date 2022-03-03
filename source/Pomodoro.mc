@@ -21,12 +21,13 @@ module Pomodoro {
 	enum {
 		STATE_READY,
 		STATE_RUNNING,
-		STATE_PAUSE,
-		STATE_STOPPED
+		STATE_PAUSE
 	}
 
 	var timer;
 
+	// timer is on hold
+	var stoped = false;
 	var currentState = STATE_READY;
 	var iteration = 1;
 
@@ -50,24 +51,19 @@ module Pomodoro {
     }
 
 	function onSecondChanged() {
-		if (isStopped()) {
+		if (isStoped()) {
 			// call update to change time
 			Ui.requestUpdate();
 		} else {
 			countdown();
-			onIntervalChange();
 
 			Ui.requestUpdate();
 		}
 	}
 
 	function countdown() {
-		if (isRunning() || isPaused()) {
-			intervalCountdown = intervalCountdown - SECOND;
-		}
-	}
+		intervalCountdown = intervalCountdown - SECOND;
 
-	function onIntervalChange() {
 		if (intervalCountdown >= SECOND && intervalCountdown <= 3 * SECOND) {
 			vibrate(100, 300);
 		}
@@ -105,8 +101,7 @@ module Pomodoro {
 	function testOnSecondChanged_Stop(logger) {
 		logger.debug("It should not countdown when stopped.");
 		initInterval(2);
-		startFromMenu();
-		transitionToState(STATE_STOPPED);
+		stopFromMenu();
 		for(var i = 0; i < 60; i++) {
 			onSecondChanged();
 		}
@@ -117,7 +112,6 @@ module Pomodoro {
 	function testGetMinutesLeft_2Min(logger) {
 		logger.debug("It should return 2 after 10 seconds past.");
 		initInterval(2);
-		startFromMenu();
 		for(var i = 0; i < 10; i++) {
 			onSecondChanged();
 		}
@@ -128,7 +122,6 @@ module Pomodoro {
 	function testGetMinutesLeft_1Min(logger) {
 		logger.debug("It should return 1 after 60 seconds past.");
 		initInterval(2);
-		startFromMenu();
 		for(var i = 0; i < 60; i++) {
 			onSecondChanged();
 		}
@@ -163,8 +156,8 @@ module Pomodoro {
 		return currentState == STATE_READY;
 	}
 
-	function isStopped() {
-		return currentState == STATE_STOPPED;
+	function isStoped() {
+		return stoped;
 	}
 
 	function startFromMenu() {
@@ -182,6 +175,7 @@ module Pomodoro {
 	// called by StopMenuDelegate
 	function resetFromMenu() {
 		iteration = 0;
+		stoped = false;
 		transitionToState(STATE_READY);
 	}
 
@@ -189,8 +183,34 @@ module Pomodoro {
 	function testResetFromMenu(logger) {
 		logger.debug("It should change to ready on a reset from the menu.");
 		iteration = 4;
+		stopFromMenu();
 		resetFromMenu();
-		return isReady() && iteration == 1;
+		return isReady() && isStoped() == false && iteration == 1;
+	}
+
+	function stopFromMenu() {
+		stoped = true;
+	}
+
+	(:test)
+	function testStopFromMenu(logger) {
+		logger.debug("It should change to stop state after a stop from the menu.");
+		startFromMenu();
+		stopFromMenu();
+		return isStoped() && iteration == 1;
+	}
+
+	function continueFromMenu() {
+		stoped = false;
+	}
+
+	(:test)
+	function testContinueFromMenu(logger) {
+		logger.debug("It should change to last state after a stop.");
+		startFromMenu();
+		stopFromMenu();
+		continueFromMenu();
+		return isRunning() && iteration == 1;
 	}
 
 	function transitionToState(targetState) {
