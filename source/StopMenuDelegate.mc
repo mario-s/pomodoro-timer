@@ -14,11 +14,11 @@ class StopMenuDelegate extends Ui.MenuInputDelegate {
 
 	function onMenuItem( item ) {
 		if (item == :restart) {
-			Pomodoro.resetFromMenu();
+			Pomodoro.reset();
 
 			Ui.requestUpdate();
 		} else if (item == :stop) {
-			Pomodoro.stopFromMenu();
+			Pomodoro.onHold();
 			Ui.requestUpdate();
 		} else if (item == :exit) {
 			System.exit();

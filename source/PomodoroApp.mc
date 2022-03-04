@@ -21,7 +21,7 @@ class PomodoroApp extends App.AppBase {
 	}
 
 	function onStop(state) {
-		Pomodoro.stopTimer();
+		Pomodoro.stop();
 	}
 
 	function getInitialView() {

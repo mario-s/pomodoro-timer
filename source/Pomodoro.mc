@@ -101,7 +101,7 @@ module Pomodoro {
 	function testOnSecondChanged_Stop(logger) {
 		logger.debug("It should not countdown when stopped.");
 		initInterval(2);
-		stopFromMenu();
+		onHold();
 		for(var i = 0; i < 60; i++) {
 			onSecondChanged();
 		}
@@ -160,43 +160,43 @@ module Pomodoro {
 		return stoped;
 	}
 
-	function startFromMenu() {
+	function start() {
 		iteration = 0;
 		transitionToState(STATE_RUNNING);
 	}
 
 	(:test)
-	function testStartFromMenu(logger) {
+	function testStart(logger) {
 		logger.debug("It should change to ready to running.");
-		startFromMenu();
+		start();
 		return isRunning() && iteration == 1;
 	}
 
 	// called by StopMenuDelegate
-	function resetFromMenu() {
+	function reset() {
 		iteration = 0;
 		stoped = false;
 		transitionToState(STATE_READY);
 	}
 
 	(:test)
-	function testResetFromMenu(logger) {
+	function testReset(logger) {
 		logger.debug("It should change to ready on a reset from the menu.");
 		iteration = 4;
-		stopFromMenu();
-		resetFromMenu();
+		onHold();
+		reset();
 		return isReady() && isStoped() == false && iteration == 1;
 	}
 
-	function stopFromMenu() {
+	function onHold() {
 		stoped = true;
 	}
 
 	(:test)
-	function testStopFromMenu(logger) {
+	function testOnHold(logger) {
 		logger.debug("It should change to stop state after a stop from the menu.");
-		startFromMenu();
-		stopFromMenu();
+		start();
+		onHold();
 		return isStoped() && iteration == 1;
 	}
 
@@ -207,8 +207,8 @@ module Pomodoro {
 	(:test)
 	function testContinueFromMenu(logger) {
 		logger.debug("It should change to last state after a stop.");
-		startFromMenu();
-		stopFromMenu();
+		start();
+		onHold();
 		continueFromMenu();
 		return isRunning() && iteration == 1;
 	}
@@ -267,7 +267,7 @@ module Pomodoro {
 		intervalCountdown = intervalLength;
 	}
 
-	function stopTimer() {
+	function stop() {
 		timer.stop();
 	}
 }
