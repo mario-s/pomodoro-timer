@@ -27,7 +27,7 @@ module Pomodoro {
 	var timer;
 
 	// timer is on hold
-	var stoped = false;
+	var hold = false;
 	var currentState = STATE_READY;
 	var iteration = 1;
 
@@ -51,7 +51,7 @@ module Pomodoro {
     }
 
 	function onSecondChanged() {
-		if (isStoped()) {
+		if (isOnHold()) {
 			// call update to change time
 			Ui.requestUpdate();
 		} else {
@@ -156,10 +156,6 @@ module Pomodoro {
 		return currentState == STATE_READY;
 	}
 
-	function isStoped() {
-		return stoped;
-	}
-
 	function start() {
 		iteration = 0;
 		transitionToState(STATE_RUNNING);
@@ -175,7 +171,7 @@ module Pomodoro {
 	// called by StopMenuDelegate
 	function reset() {
 		iteration = 0;
-		stoped = false;
+		hold = false;
 		transitionToState(STATE_READY);
 	}
 
@@ -185,11 +181,15 @@ module Pomodoro {
 		iteration = 4;
 		onHold();
 		reset();
-		return isReady() && isStoped() == false && iteration == 1;
+		return isReady() && isOnHold() == false && iteration == 1;
+	}
+
+	function isOnHold() {
+		return hold;
 	}
 
 	function onHold() {
-		stoped = true;
+		hold = !hold;
 	}
 
 	(:test)
@@ -197,11 +197,11 @@ module Pomodoro {
 		logger.debug("It should change to stop state after a stop from the menu.");
 		start();
 		onHold();
-		return isStoped() && iteration == 1;
+		return isOnHold() && iteration == 1;
 	}
 
 	function continueFromMenu() {
-		stoped = false;
+		hold = false;
 	}
 
 	(:test)

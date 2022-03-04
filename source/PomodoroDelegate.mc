@@ -43,8 +43,9 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 	}
 
 	function onMenu() {
-		Ui.pushView(new Rez.Menus.StopMenu(),
-					new StopMenuDelegate(), Ui.SLIDE_UP);
+		var menu = new Rez.Menus.StopMenu();
+		var delegate = new StopMenuDelegate(menu);
+		Ui.pushView(menu, delegate, Ui.SLIDE_UP);
 		return true;
 	}
 }
