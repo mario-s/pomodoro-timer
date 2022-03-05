@@ -4,7 +4,10 @@ using Toybox.WatchUi as Ui;
 using Toybox.Test;
 using Pomodoro;
 
-
+/**
+ * Class for main interaction with the app.
+ * For instance it will start the Pomodoro or show a menu.
+ **/
 class PomodoroDelegate extends Ui.BehaviorDelegate {
 
 	var menu;
