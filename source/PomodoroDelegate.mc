@@ -7,8 +7,11 @@ using Pomodoro;
 
 class PomodoroDelegate extends Ui.BehaviorDelegate {
 
+	var menu;
+
 	function initialize() {
 		Ui.BehaviorDelegate.initialize();
+		menu = new Rez.Menus.StopMenu();
 	}
 
 	function onBack() {
@@ -43,9 +46,23 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 	}
 
 	function onMenu() {
-		var menu = new Rez.Menus.StopMenu();
-		var delegate = new StopMenuDelegate(menu);
-		Ui.pushView(menu, delegate, Ui.SLIDE_UP);
+		// find hold item and align with field from Pomodoro
+		findHoldItem(menu).setEnabled(Pomodoro.isOnHold());
+		Ui.pushView(menu, new StopMenuDelegate(), Ui.SLIDE_UP);
 		return true;
+	}
+
+	function findHoldItem(menu as Menu2) {
+		var id = menu.findItemById(:hold);
+		return menu.getItem(id);
+	}
+
+	(:test)
+	function testOnMenu(logger) {
+		logger.debug("Test for onMenu should should enable toggle item when on hold.");
+		var classUnderTest = new PomodoroDelegate();
+		Pomodoro.onHold();
+		classUnderTest.onMenu();
+		return classUnderTest.findHoldItem(classUnderTest.menu).isEnabled();
 	}
 }

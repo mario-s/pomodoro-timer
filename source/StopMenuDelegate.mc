@@ -8,13 +8,8 @@ using Pomodoro;
  **/
 class StopMenuDelegate extends Ui.Menu2InputDelegate {
 
-	function initialize(menu as Menu2) {
+	function initialize() {
 		Menu2InputDelegate.initialize();
-
-		// find hold item and align with field from Pomodoro
-		var id = menu.findItemById(:hold);
-		var holdItem = menu.getItem(id);
-		holdItem.setEnabled(Pomodoro.isOnHold());
 	}
 
 	function onBack() {
