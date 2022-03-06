@@ -1,5 +1,5 @@
 # PomodoroTimer
-An implementation of the [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) for Garmin wearables. Inspired by [Garmodoro](https://github.com/klimeryk/garmodoro), however this has no support for handheld devices.
+An implementation of the [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) for Garmin wearables. Inspired by [Garmodoro](https://github.com/klimeryk/garmodoro), however this PomodoroTimer has no support for handheld devices.
 
 ## Features
 * Keeps track of time left in your Pomodoro session, as well as break time and overal number of Pomodoros.
