@@ -17,6 +17,7 @@ class PomodoroView extends Ui.View {
 	private var shortBreakLabel;
 	private var longBreakLabel;
 	private var readyLabel;
+	private var holdIcon;
 
 	private var centerX;
 	private var centerY;
@@ -27,23 +28,25 @@ class PomodoroView extends Ui.View {
 	private var readyLabelOffset;
 	private var minutesOffset;
 	private var timeOffset;
+	private var holdIconX;
 
 	function initialize() {
 		View.initialize();
 	}
 
 	function onLayout(dc) {
-		loadLabels();
+		loadResources();
 
 		calculateLayout(dc.getWidth(), dc.getHeight());
 	}
 
-	private function loadLabels() {
+	private function loadResources() {
 		remainingMinutes = Ui.loadResource(Rez.Strings.RemainingMinutes);
 		remainingMinute = Ui.loadResource(Rez.Strings.RemainingMinute);
 		shortBreakLabel = Ui.loadResource(Rez.Strings.ShortBreakLabel);
 		longBreakLabel = Ui.loadResource(Rez.Strings.LongBreakLabel);
 		readyLabel = Ui.loadResource(Rez.Strings.ReadyLabel);
+		holdIcon = Ui.loadResource(Rez.Drawables.on_hold);
 	}
 
 	private function calculateLayout(width, height) {
@@ -65,6 +68,8 @@ class PomodoroView extends Ui.View {
 		self.readyLabelOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_LARGE) / 2);
 		self.minutesOffset = self.centerY - largeFontHeight / 2;
 		self.captionOffset = self.minutesOffset + largeFontHeight + 5 - Gfx.getFontHeight(Gfx.FONT_TINY);
+
+		self.holdIconX = 30;
 	}
 
 	private function calculatePomodoroOffset() {
@@ -87,6 +92,7 @@ class PomodoroView extends Ui.View {
 			drawReady(dc);
 		}
 
+		drawIcon(dc);
 		drawTime(dc);
 	}
 
@@ -158,7 +164,7 @@ class PomodoroView extends Ui.View {
 		dc.drawText(self.centerX, self.timeOffset, Gfx.FONT_NUMBER_MILD, getTime(), Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
-	private function setColor(dc, color) {
+	private function setColor(dc as Graphics.Dc, color) {
 		dc.setColor(color, Gfx.COLOR_TRANSPARENT);
 	}
 
@@ -168,5 +174,11 @@ class PomodoroView extends Ui.View {
 			today.hour.format("%02d"),
 			today.min.format("%02d")
 		]);
+	}
+
+	private function drawIcon(dc) {
+		if (Pomodoro.isOnHold()) {
+			dc.drawBitmap(self.holdIconX, self.centerY, holdIcon);
+		}
 	}
 }
