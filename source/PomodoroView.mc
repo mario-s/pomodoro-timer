@@ -77,8 +77,7 @@ class PomodoroView extends Ui.View {
 	}
 
 	function onUpdate(dc) {
-		dc.setColor(Gfx.COLOR_TRANSPARENT, Gfx.COLOR_BLACK);
-		dc.clear();
+		clear(dc);
 
 		if (Pomodoro.isPaused()) {
 			drawBreak(dc);
@@ -91,34 +90,47 @@ class PomodoroView extends Ui.View {
 		drawTime(dc);
 	}
 
+	private function clear(dc) {
+		dc.setColor(Gfx.COLOR_TRANSPARENT, Gfx.COLOR_BLACK);
+		dc.clear();
+	}
+
 	private function drawBreak(dc) {
-		var label = Pomodoro.isLongBreak() ? self.longBreakLabel : self.shortBreakLabel;
-		dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_TRANSPARENT);
+		var color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_GREEN;
+		setColor(dc, color);
 		drawCountdown(dc);
+
+		var label = Pomodoro.isLongBreak() ? self.longBreakLabel : self.shortBreakLabel;
 		dc.drawText(self.centerX, self.pomodoroOffset, Gfx.FONT_MEDIUM, label, Gfx.TEXT_JUSTIFY_CENTER);
 		drawMinutes(dc);
-		dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_TRANSPARENT);
+
+		color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_DK_GREEN;
+		setColor(dc, color);
 		drawRemainingLabel(dc);
 	}
 
 	private function drawRunning(dc) {
 		drawStage(dc);
-		dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
+
+		var color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_YELLOW;
+		setColor(dc, color);
 		drawCountdown(dc);
 		drawMinutes(dc);
-		dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
+
+		color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_ORANGE;
+		setColor(dc, color);
 		drawRemainingLabel(dc);
 	}
 
 	private function drawReady(dc) {
 		drawStage(dc);
-		dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
+		setColor(dc, Gfx.COLOR_ORANGE);
 		dc.drawText(self.centerX, self.readyLabelOffset, Gfx.FONT_LARGE, self.readyLabel, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
 	private function drawStage(dc) {
 		var label = "Pomodoro #" + Pomodoro.iteration;
-		dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
+		setColor(dc, Gfx.COLOR_LT_GRAY);
 		dc.drawText(self.centerX, self.pomodoroOffset, Gfx.FONT_MEDIUM, label, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
@@ -142,8 +154,12 @@ class PomodoroView extends Ui.View {
 	}
 
 	private function drawTime(dc) {
-		dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
+		setColor(dc, Gfx.COLOR_LT_GRAY);
 		dc.drawText(self.centerX, self.timeOffset, Gfx.FONT_NUMBER_MILD, getTime(), Gfx.TEXT_JUSTIFY_CENTER);
+	}
+
+	private function setColor(dc, color) {
+		dc.setColor(color, Gfx.COLOR_TRANSPARENT);
 	}
 
 	private function getTime() {
