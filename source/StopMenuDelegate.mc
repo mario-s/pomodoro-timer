@@ -6,18 +6,29 @@ using Pomodoro;
 /**
  * Delegate for the Stop Menu Item.
  **/
-class StopMenuDelegate extends Ui.MenuInputDelegate {
+class StopMenuDelegate extends Ui.Menu2InputDelegate {
 
 	function initialize() {
-		MenuInputDelegate.initialize();
+		Menu2InputDelegate.initialize();
 	}
 
-	function onMenuItem( item ) {
-		if (item == :restart) {
-			Pomodoro.resetFromMenu();
+	function onBack() {
+		//leave the menu
+        WatchUi.popView(WatchUi.SLIDE_DOWN);
+    }
 
+	function onSelect(item as MenuItem) {
+		var id = item.getId();
+		if (id == :restart) {
+			//reset and show main screen again
+			Pomodoro.reset();
+			onBack();
 			Ui.requestUpdate();
-		} else if (item == :exit) {
+		} else if (id == :hold) {
+			//just hold progress, user can decide to leave menu
+			Pomodoro.onHold();
+		} else if (id == :exit) {
+			//complete exit
 			System.exit();
 		}
 	}

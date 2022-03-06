@@ -26,6 +26,8 @@ module Pomodoro {
 
 	var timer;
 
+	// timer is on hold
+	var hold = false;
 	var currentState = STATE_READY;
 	var iteration = 1;
 
@@ -33,12 +35,13 @@ module Pomodoro {
 	var intervalLength = 0;
 	var intervalCountdown = 0;
 
-	var tickStrength;
-	var tickDuration;
+	var isSoundOnChange = true;
+	var isVibrateOnChange = true;
 
 	function initialize() {
-		tickStrength = App.getApp().getProperty("tickStrength");
-		tickDuration = App.getApp().getProperty("tickDuration");
+		isSoundOnChange =  App.getApp().getProperty("soundOnChange");
+		isVibrateOnChange = App.getApp().getProperty("vibrateOnChange");
+
 		timer = new Timer.Timer();
 	}
 
@@ -48,13 +51,22 @@ module Pomodoro {
     }
 
 	function onSecondChanged() {
-		if (isRunning() || isPaused()) {
-			intervalCountdown = intervalCountdown - SECOND;
-		}
+		if (isOnHold()) {
+			// call update to change time
+			Ui.requestUpdate();
+		} else {
+			countdown();
 
-        if (shouldTick()) {
-		    vibrate(tickStrength, tickDuration);
-        }
+			Ui.requestUpdate();
+		}
+	}
+
+	function countdown() {
+		intervalCountdown = intervalCountdown - SECOND;
+
+		if (intervalCountdown >= SECOND && intervalCountdown <= 3 * SECOND) {
+			vibrate(100, 300);
+		}
 
 		if (getMinutesLeft() == 0) {
 			if(isRunning()) {
@@ -63,18 +75,6 @@ module Pomodoro {
 				transitionToState(STATE_RUNNING);
 			}
 		}
-
-        Ui.requestUpdate();
-	}
-
-    function shouldTick() {
-		return tickStrength > 0;
-	}
-
-	(:test)
-	function testShouldTick(logger) {
-		logger.debug("It should return false for shouldTick().");
-		return !shouldTick();
 	}
 
 	function getCountdownDegree() {
@@ -98,10 +98,20 @@ module Pomodoro {
 	}
 
 	(:test)
+	function testOnSecondChanged_Stop(logger) {
+		logger.debug("It should not countdown when stopped.");
+		initInterval(2);
+		onHold();
+		for(var i = 0; i < 60; i++) {
+			onSecondChanged();
+		}
+		return getMinutesLeft() == 2;
+	}
+
+	(:test)
 	function testGetMinutesLeft_2Min(logger) {
 		logger.debug("It should return 2 after 10 seconds past.");
 		initInterval(2);
-		startFromMenu();
 		for(var i = 0; i < 10; i++) {
 			onSecondChanged();
 		}
@@ -112,7 +122,6 @@ module Pomodoro {
 	function testGetMinutesLeft_1Min(logger) {
 		logger.debug("It should return 1 after 60 seconds past.");
 		initInterval(2);
-		startFromMenu();
 		for(var i = 0; i < 60; i++) {
 			onSecondChanged();
 		}
@@ -147,30 +156,61 @@ module Pomodoro {
 		return currentState == STATE_READY;
 	}
 
-	function startFromMenu() {
+	function start() {
 		iteration = 0;
 		transitionToState(STATE_RUNNING);
 	}
 
 	(:test)
-	function testStartFromMenu(logger) {
+	function testStart(logger) {
 		logger.debug("It should change to ready to running.");
-		startFromMenu();
+		start();
 		return isRunning() && iteration == 1;
 	}
 
 	// called by StopMenuDelegate
-	function resetFromMenu() {
+	function reset() {
 		iteration = 0;
+		hold = false;
 		transitionToState(STATE_READY);
 	}
 
 	(:test)
-	function testResetFromMenu(logger) {
+	function testReset(logger) {
 		logger.debug("It should change to ready on a reset from the menu.");
 		iteration = 4;
-		resetFromMenu();
-		return isReady() && iteration == 1;
+		onHold();
+		reset();
+		return isReady() && isOnHold() == false && iteration == 1;
+	}
+
+	function isOnHold() {
+		return hold;
+	}
+
+	function onHold() {
+		hold = !hold;
+	}
+
+	(:test)
+	function testOnHold(logger) {
+		logger.debug("It should change to stop state after a stop from the menu.");
+		start();
+		onHold();
+		return isOnHold() && iteration == 1;
+	}
+
+	function continueFromMenu() {
+		hold = false;
+	}
+
+	(:test)
+	function testContinueFromMenu(logger) {
+		logger.debug("It should change to last state after a stop.");
+		start();
+		onHold();
+		continueFromMenu();
+		return isRunning() && iteration == 1;
 	}
 
 	function transitionToState(targetState) {
@@ -178,34 +218,31 @@ module Pomodoro {
 
 		if(isReady()) {
 			playTone(7);
-			vibrate(100, 1500);
+			vibrate(100, SECOND);
 
 			iteration = 1;
 		} else if(isRunning()) {
 			playTone(1);
-			vibrate(75, 1500);
+			vibrate(75, SECOND);
 
 			iteration += 1;
 			resetPomodoroMinutes();
-		} else { // targetState == STATE_PAUSE
+		} else if(isPaused()) {
 			playTone(10);
-			vibrate(100, 1500);
+			vibrate(100, SECOND);
 
 			resetPauseMinutes();
 		}
 	}
 
 	function playTone(tone) {
-		if (Attention has :playTone) {
-			var isMuted =  App.getApp().getProperty("muteSounds");
-			if (!isMuted) {
-				Attention.playTone(tone);
-			}
+		if (Attention has :playTone && isSoundOnChange) {
+			Attention.playTone(tone);
 		}
 	}
 
     function vibrate(dutyCycle, length) {
-		if (Attention has :vibrate) {
+		if (Attention has :vibrate && isVibrateOnChange) {
 			Attention.vibrate([new Attention.VibeProfile(
 						dutyCycle, length)]);
 		}
@@ -230,7 +267,7 @@ module Pomodoro {
 		intervalCountdown = intervalLength;
 	}
 
-	function stopTimer() {
+	function stop() {
 		timer.stop();
 	}
 }

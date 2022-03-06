@@ -1,7 +1,9 @@
 using Toybox.Application as App;
 using Pomodoro;
 
-
+/**
+ * The entry point.
+ **/
 class PomodoroApp extends App.AppBase {
 
 	function initialize() {
@@ -16,12 +18,14 @@ class PomodoroApp extends App.AppBase {
 		return Pomodoro.isReady();
 	}
 
+	// on application start
 	function onStart(state) {
 		Pomodoro.startTimer();
 	}
 
+	// on application stop
 	function onStop(state) {
-		Pomodoro.stopTimer();
+		Pomodoro.stop();
 	}
 
 	function getInitialView() {

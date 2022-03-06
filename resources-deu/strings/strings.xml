@@ -4,9 +4,8 @@
 	<string id="ShortBreakDuration">Dauer einer kurzen Pause</string>
 	<string id="LongBreakDuration">Dauer einer langen Pause</string>
 	<string id="PomodorosBeforeLongBreak">Anzahl der Pomodoros in einer Gruppe</string>
-	<string id="TickStrength">Stärke der Vibration nach einem Intervall</string>
-	<string id="TickDuration">Länge der Vibration nach einem Intervall</string>
-	<string id="MuteSounds">keine Töne</string>
+	<string id="VibrateOnChange">Vibration beim Intervallwechsel</string>
+	<string id="SoundOnChange">Töne beim Intervallwechsel</string>
 
 	<string id="RemainingMinutes">Minuten übrig</string>
 	<string id="RemainingMinute">Minute übrig</string>
@@ -15,5 +14,6 @@
 	<string id="ReadyLabel">Fertig!</string>
 
 	<string id="RestartMenuLabel">Neustart</string>
+	<string id="HoldMenuLabel">Anhalten</string>
 	<string id="ExitMenuLabel">Beenden</string>
 </strings>
