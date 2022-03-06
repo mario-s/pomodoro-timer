@@ -14,9 +14,9 @@ module Pomodoro {
 	const RECTANGULAR = 90;
 
 	// 1 second in ms
-    const SECOND = 1000;
+	const SECOND = 1000;
 	// 1 minute in ms
-    const MINUTE = 60 * SECOND;
+	const MINUTE = 60 * SECOND;
 
 	enum {
 		STATE_READY,
@@ -45,10 +45,10 @@ module Pomodoro {
 		timer = new Timer.Timer();
 	}
 
-    function startTimer() {
+	function startTimer() {
 		var func = new Lang.Method(Pomodoro, :onSecondChanged);
 		timer.start(func, SECOND, true);
-    }
+	}
 
 	function onSecondChanged() {
 		if (isOnHold()) {
@@ -241,7 +241,7 @@ module Pomodoro {
 		}
 	}
 
-    function vibrate(dutyCycle, length) {
+	function vibrate(dutyCycle, length) {
 		if (Attention has :vibrate && isVibrateOnChange) {
 			Attention.vibrate([new Attention.VibeProfile(
 						dutyCycle, length)]);
