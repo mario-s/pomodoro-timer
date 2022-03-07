@@ -25,8 +25,12 @@ class StopMenuDelegate extends Ui.Menu2InputDelegate {
 			onBack();
 			Ui.requestUpdate();
 		} else if (id == :hold) {
-			//just hold progress, user can decide to leave menu
 			Pomodoro.onHold();
+			// if continue we go immediatly back
+			if (!Pomodoro.isOnHold()) {
+				onBack();
+				Ui.requestUpdate();
+			}
 		} else if (id == :exit) {
 			//complete exit
 			System.exit();
