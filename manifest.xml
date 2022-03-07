@@ -6,12 +6,10 @@
         name="@Strings.AppName" type="watch-app">
         <iq:products>
             <iq:product id="approachs62"/>
-            <iq:product id="legacyherocaptainmarvel"/>
             <iq:product id="d2air"/>
             <iq:product id="d2delta"/>
             <iq:product id="d2deltapx"/>
             <iq:product id="d2deltas"/>
-            <iq:product id="legacysagadarthvader"/>
             <iq:product id="descentmk1"/>
             <iq:product id="descentmk2"/>
             <iq:product id="descentmk2s"/>
@@ -25,7 +23,6 @@
             <iq:product id="fenix7"/>
             <iq:product id="fenix7s"/>
             <iq:product id="fenix7x"/>
-            <iq:product id="legacyherofirstavenger"/>
             <iq:product id="fr55"/>
             <iq:product id="fr245"/>
             <iq:product id="fr245m"/>
@@ -35,6 +32,9 @@
             <iq:product id="fr935"/>
             <iq:product id="fr945"/>
             <iq:product id="fr945lte"/>
+            <iq:product id="legacyherocaptainmarvel"/>
+            <iq:product id="legacyherofirstavenger"/>
+            <iq:product id="legacysagadarthvader"/>
             <iq:product id="legacysagarey"/>
             <iq:product id="marqadventurer"/>
             <iq:product id="marqathlete"/>
