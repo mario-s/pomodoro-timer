@@ -8,8 +8,8 @@ using Pomodoro;
 
 
 /**
-* Main App view.
-**/
+ * Main App view.
+ **/
 class PomodoroView extends Ui.View {
 
 	private var remainingMinutes;
