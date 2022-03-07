@@ -1,5 +1,5 @@
 <strings>
-	<string id="AppName">Pomodoro</string>
+	<string id="AppName">Pomodoro Timer</string>
 	<string id="PomodoroDuration">Duración del Pomodoro (en minutos)</string>
 	<string id="ShortBreakDuration">Duración del descanso corto</string>
 	<string id="LongBreakDuration">Duración del descanso largo</string>
