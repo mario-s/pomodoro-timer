@@ -73,11 +73,11 @@ class PomodoroView extends Ui.View {
 	}
 
 	private function calculatePomodoroOffset() {
-		self.pomodoroOffset = 5;
+		self.pomodoroOffset = 20;
 		var screenShape = System.getDeviceSettings().screenShape;
 		if (System.SCREEN_SHAPE_RECTANGLE != screenShape) {
 			self.pomodoroOffset += Gfx.getFontHeight(Gfx.FONT_MEDIUM);
-			self.timeOffset -= 5;
+			self.timeOffset -= 20;
 		}
 	}
 
