@@ -12,8 +12,7 @@ using Pomodoro;
  **/
 class PomodoroView extends Ui.View {
 
-	private var remainingMinutes;
-	private var remainingMinute;
+	private var minutes;
 	private var shortBreakLabel;
 	private var longBreakLabel;
 	private var readyLabel;
@@ -41,8 +40,7 @@ class PomodoroView extends Ui.View {
 	}
 
 	private function loadResources() {
-		remainingMinutes = Ui.loadResource(Rez.Strings.RemainingMinutes);
-		remainingMinute = Ui.loadResource(Rez.Strings.RemainingMinute);
+		minutes = Ui.loadResource(Rez.Strings.Minutes);
 		shortBreakLabel = Ui.loadResource(Rez.Strings.ShortBreakLabel);
 		longBreakLabel = Ui.loadResource(Rez.Strings.LongBreakLabel);
 		readyLabel = Ui.loadResource(Rez.Strings.ReadyLabel);
@@ -64,8 +62,7 @@ class PomodoroView extends Ui.View {
 		var largeFontHeight = Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT);
 		self.readyLabelOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_LARGE) / 2);
 		self.minutesOffset = self.centerY - largeFontHeight / 2;
-		self.captionOffset = self.centerY + Gfx.getFontHeight(Gfx.FONT_TINY) + 7;
-
+		self.captionOffset = centerX + (centerX / 2);
 		self.holdIconX = 30;
 	}
 
@@ -106,28 +103,20 @@ class PomodoroView extends Ui.View {
 		var label = Pomodoro.isLongBreak() ? self.longBreakLabel : self.shortBreakLabel;
 		dc.drawText(self.centerX, self.pomodoroOffset, Gfx.FONT_MEDIUM, label, Gfx.TEXT_JUSTIFY_CENTER);
 		drawMinutes(dc);
-
-		color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_DK_GREEN;
-		withColor(dc, color);
-		drawRemainingLabel(dc);
 	}
 
 	private function drawRunning(dc) {
 		drawStage(dc);
 
-		var color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_YELLOW;
+		var color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_RED;
 		withColor(dc, color);
 		drawCountdown(dc);
 		drawMinutes(dc);
-
-		color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_ORANGE;
-		withColor(dc, color);
-		drawRemainingLabel(dc);
 	}
 
 	private function drawReady(dc) {
 		drawStage(dc);
-		withColor(dc, Gfx.COLOR_ORANGE);
+		withColor(dc, Gfx.COLOR_YELLOW);
 		dc.drawText(self.centerX, self.readyLabelOffset, Gfx.FONT_LARGE, self.readyLabel, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
@@ -145,15 +134,7 @@ class PomodoroView extends Ui.View {
 	private function drawMinutes(dc) {
 		var minutesAsText = Pomodoro.getMinutesLeft().format("%02d");
 		dc.drawText(self.centerX, self.minutesOffset, Gfx.FONT_NUMBER_THAI_HOT, minutesAsText, Gfx.TEXT_JUSTIFY_CENTER);
-	}
-
-	private function drawRemainingLabel(dc) {
-		var text = self.remainingMinutes;
-		var minutes = Pomodoro.getMinutesLeft();
-		if (minutes <= 1) {
-			text = self.remainingMinute;
-		}
-		dc.drawText(self.centerX, self.captionOffset, Gfx.FONT_TINY, text, Gfx.TEXT_JUSTIFY_CENTER);
+		dc.drawText(self.captionOffset, self.centerY, Gfx.FONT_TINY, self.minutes, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
 	private function drawTime(dc) {
