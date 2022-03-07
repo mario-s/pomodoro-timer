@@ -67,7 +67,7 @@ class PomodoroView extends Ui.View {
 		var largeFontHeight = Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT);
 		self.readyLabelOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_LARGE) / 2);
 		self.minutesOffset = self.centerY - largeFontHeight / 2;
-		self.captionOffset = self.minutesOffset + largeFontHeight + 5 - Gfx.getFontHeight(Gfx.FONT_TINY);
+		self.captionOffset = self.minutesOffset + largeFontHeight / 2 + Gfx.getFontHeight(Gfx.FONT_TINY) + 7;
 
 		self.holdIconX = 30;
 	}
@@ -82,7 +82,7 @@ class PomodoroView extends Ui.View {
 	}
 
 	function onUpdate(dc) {
-		clear(dc);
+		clearView(dc);
 
 		if (Pomodoro.isPaused()) {
 			drawBreak(dc);
@@ -96,14 +96,14 @@ class PomodoroView extends Ui.View {
 		drawTime(dc);
 	}
 
-	private function clear(dc) {
+	private function clearView(dc) {
 		dc.setColor(Gfx.COLOR_TRANSPARENT, Gfx.COLOR_BLACK);
 		dc.clear();
 	}
 
 	private function drawBreak(dc) {
 		var color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_GREEN;
-		setColor(dc, color);
+		withColor(dc, color);
 		drawCountdown(dc);
 
 		var label = Pomodoro.isLongBreak() ? self.longBreakLabel : self.shortBreakLabel;
@@ -111,7 +111,7 @@ class PomodoroView extends Ui.View {
 		drawMinutes(dc);
 
 		color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_DK_GREEN;
-		setColor(dc, color);
+		withColor(dc, color);
 		drawRemainingLabel(dc);
 	}
 
@@ -119,24 +119,24 @@ class PomodoroView extends Ui.View {
 		drawStage(dc);
 
 		var color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_YELLOW;
-		setColor(dc, color);
+		withColor(dc, color);
 		drawCountdown(dc);
 		drawMinutes(dc);
 
 		color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_ORANGE;
-		setColor(dc, color);
+		withColor(dc, color);
 		drawRemainingLabel(dc);
 	}
 
 	private function drawReady(dc) {
 		drawStage(dc);
-		setColor(dc, Gfx.COLOR_ORANGE);
+		withColor(dc, Gfx.COLOR_ORANGE);
 		dc.drawText(self.centerX, self.readyLabelOffset, Gfx.FONT_LARGE, self.readyLabel, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
 	private function drawStage(dc) {
 		var label = "Pomodoro #" + Pomodoro.iteration;
-		setColor(dc, Gfx.COLOR_LT_GRAY);
+		withColor(dc, Gfx.COLOR_LT_GRAY);
 		dc.drawText(self.centerX, self.pomodoroOffset, Gfx.FONT_MEDIUM, label, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
@@ -160,11 +160,11 @@ class PomodoroView extends Ui.View {
 	}
 
 	private function drawTime(dc) {
-		setColor(dc, Gfx.COLOR_LT_GRAY);
+		withColor(dc, Gfx.COLOR_LT_GRAY);
 		dc.drawText(self.centerX, self.timeOffset, Gfx.FONT_NUMBER_MILD, getTime(), Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
-	private function setColor(dc as Graphics.Dc, color) {
+	private function withColor(dc as Graphics.Dc, color) {
 		dc.setColor(color, Gfx.COLOR_TRANSPARENT);
 	}
 
