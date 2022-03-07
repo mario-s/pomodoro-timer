@@ -58,10 +58,7 @@ class PomodoroView extends Ui.View {
 			radius = centerY - 1;
 		}
 
-		var mediumOffsetHalf = Gfx.getFontHeight(Gfx.FONT_MEDIUM) / 2;
-		var mildOffset = Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD);
-
-		self.timeOffset = height - mildOffset;
+		self.timeOffset = height - Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD) - 5;
 		calculatePomodoroOffset();
 
 		var largeFontHeight = Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT);
