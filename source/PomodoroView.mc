@@ -5,6 +5,7 @@ using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.Lang;
 using Pomodoro;
+using Util;
 
 
 /**
@@ -28,6 +29,9 @@ class PomodoroView extends Ui.View {
 	private var minutesOffset;
 	private var timeOffset;
 	private var holdIconX;
+	private var readyColor;
+	private var pomodoroColor;
+	private var breakColor;
 
 	function initialize() {
 		View.initialize();
@@ -45,6 +49,7 @@ class PomodoroView extends Ui.View {
 		longBreakLabel = Ui.loadResource(Rez.Strings.LongBreakLabel);
 		readyLabel = Ui.loadResource(Rez.Strings.ReadyLabel);
 		holdIcon = Ui.loadResource(Rez.Drawables.on_hold);
+		readyColor = Util.getProperty("readyColor");
 	}
 
 	private function calculateLayout(width, height) {
