@@ -16,3 +16,7 @@ An implementation of the [Pomodoro technique](https://en.wikipedia.org/wiki/Pomo
 ## Development
 
 To run the project, you just need the SDK and the Monkey C plugin for Visual Studio Code.
+
+There are two Shell scripts for testing:
+* test_all: runs the test for all devices found in the manifest.xml
+* test: runs the test for one device which can be passed as an argument (default is venu2plus)

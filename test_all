@@ -1,0 +1,16 @@
+#!/bin/bash
+
+devices=`grep 'iq:product id' manifest.xml | sed 's/.*iq:product id="\([^"]*\).*/\1/'`
+while read -r device
+do
+    echo "-----------------------"
+
+    if [ -d bin ]; then
+        rm -Rf bin
+    fi
+
+    source ./test $device
+
+    echo ""
+
+done <<<"$devices"

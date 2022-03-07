@@ -1,7 +1,12 @@
 #!/bin/bash
 
-DEVICE=enduro
-echo "Testing for $DEVICE"
+if [ -n "$1" ]; then
+    DEVICE=$1
+else
+    DEVICE=venu2plus
+fi
+
+echo "Testing: $DEVICE"
 if [ -d bin ]; then
     rm -Rf bin
 fi
