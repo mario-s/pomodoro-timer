@@ -11,10 +11,10 @@ class ColorFactory {
         return getColor(value);
     }
 
-    function getColor(key as String) {
-        var red = to255(key.substring(0, 2));
-        var green = to255(key.substring(2, 4));
-        var blue = to255(key.substring(4, key.length()));
+    function getColor(hexVal as String) {
+        var red = to255(hexVal.substring(0, 2));
+        var green = to255(hexVal.substring(2, 4));
+        var blue = to255(hexVal.substring(4, key.length()));
         return Graphics.createColor(0, red, green, blue);
     }
 
