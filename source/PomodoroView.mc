@@ -53,6 +53,7 @@ class PomodoroView extends Ui.View {
 		var factory = new ColorFactory();
 		readyColor = factory.getColorByPropertyKey("readyColor");
 		pomodoroColor = factory.getColorByPropertyKey("pomodoroColor");
+		breakColor = factory.getColorByPropertyKey("breakColor");
 	}
 
 	private function calculateLayout(width, height) {
@@ -104,7 +105,7 @@ class PomodoroView extends Ui.View {
 	}
 
 	private function drawBreak(dc) {
-		var color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_GREEN;
+		var color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : breakColor;
 		withColor(dc, color);
 		drawCountdown(dc);
 
