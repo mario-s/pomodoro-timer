@@ -6,6 +6,6 @@
 	<property id="vibrateOnChange" type="boolean">true</property>
 	<property id="soundOnChange" type="boolean">true</property>
 	<property id="pomodoroColor" type="string">ff0000</property>
-	<property id="breakColor" type="string">00ffff</property>
-	<property id="readyColor" type="string">00ff00</property>
+	<property id="breakColor" type="string">00ff00</property>
+	<property id="readyColor" type="string">00ffff</property>
 </properties>

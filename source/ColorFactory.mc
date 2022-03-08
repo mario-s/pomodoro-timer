@@ -1,25 +1,28 @@
 using Toybox.Application as App;
+using Toybox.Graphics;
 
 /**
- * Utility module.
+ * Color factory.
  **/
-module Util {
+class ColorFactory {
 
-    function getProperty(key as String) {
-        return App.getApp().getProperty(key);
+    function getColorByPropertyKey(key as String) {
+        var value = App.getApp().getProperty(key);
+        return getColor(value);
     }
 
     function getColor(key as String) {
         var red = to255(key.substring(0, 2));
         var green = to255(key.substring(2, 4));
         var blue = to255(key.substring(4, key.length()));
-        return red + green + blue;
+        return Graphics.createColor(0, red, green, blue);
     }
 
     (:test)
 	function testGetColor(logger) {
-		logger.debug("It should return a color for hexadec FFAABB.");
-		return getColor("FFAABB") == 612;
+		logger.debug("It should return a color for hexadec FF0000.");
+        var instance = new ColorFactory();
+		return instance.getColor("FFAA00") == 16755200;
 	}
 
     function to255(hex as String) {
@@ -29,11 +32,12 @@ module Util {
 
     (:test)
 	function testTo255(logger) {
-		logger.debug("It should return 255 for hexadec FF.");
-		return to255("FF") == 255;
+		logger.debug("It should return 251 for hexadec FB.");
+        var instance = new ColorFactory();
+		return instance.to255("FB") == 251;
 	}
 
-    function toDez(hex as String) {
+    private function toDez(hex as String) {
         switch(hex.toLower()) {
             case "f":
                 return 15;
@@ -51,10 +55,4 @@ module Util {
                 return hex.toLong();
         }
     }
-
-    (:test)
-	function testToDez(logger) {
-		logger.debug("It should return 16 for hex F.");
-		return toDez("10") == 10;
-	}
 }

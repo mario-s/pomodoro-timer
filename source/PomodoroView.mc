@@ -5,7 +5,7 @@ using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.Lang;
 using Pomodoro;
-using Util;
+
 
 
 /**
@@ -49,7 +49,10 @@ class PomodoroView extends Ui.View {
 		longBreakLabel = Ui.loadResource(Rez.Strings.LongBreakLabel);
 		readyLabel = Ui.loadResource(Rez.Strings.ReadyLabel);
 		holdIcon = Ui.loadResource(Rez.Drawables.on_hold);
-		readyColor = Util.getProperty("readyColor");
+
+		var factory = new ColorFactory();
+		readyColor = factory.getColorByPropertyKey("readyColor");
+		pomodoroColor = factory.getColorByPropertyKey("pomodoroColor");
 	}
 
 	private function calculateLayout(width, height) {
@@ -113,7 +116,7 @@ class PomodoroView extends Ui.View {
 	private function drawRunning(dc) {
 		drawStage(dc);
 
-		var color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : Gfx.COLOR_RED;
+		var color = Pomodoro.isOnHold() ? Gfx.COLOR_LT_GRAY : pomodoroColor;
 		withColor(dc, color);
 		drawCountdown(dc);
 		drawMinutes(dc);
@@ -121,7 +124,7 @@ class PomodoroView extends Ui.View {
 
 	private function drawReady(dc) {
 		drawStage(dc);
-		withColor(dc, Gfx.COLOR_YELLOW);
+		withColor(dc, readyColor);
 		dc.drawText(self.centerX, self.readyLabelOffset, Gfx.FONT_LARGE, self.readyLabel, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
