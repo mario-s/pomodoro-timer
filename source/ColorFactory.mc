@@ -7,22 +7,22 @@ using Toybox.Graphics;
 class ColorFactory {
 
     function getColorByPropertyKey(key as String) {
-        if (self.isColorSupport()) {
+        if (isColorSupported()) {
             var value = getProperty(key);
             return getColor(value);
         }
         return Graphics.COLOR_WHITE;
     }
 
-    function isColorSupport() {
-        return getProperty("colorSupport");
+    function isColorSupported() {
+        return Graphics has :createColor;
     }
 
     (:test)
 	function testGetColorByPropertyKey(logger) {
 		logger.debug("It should return a color from a property.");
         var instance = new ColorFactory();
-        if (instance.isColorSupport()) {
+        if (instance.isColorSupported()) {
             return instance.getColorByPropertyKey("readyColor") == 16755200;
         }
 		return instance.getColorByPropertyKey("readyColor") == Graphics.COLOR_WHITE;

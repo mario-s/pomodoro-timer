@@ -7,6 +7,7 @@
 	<string id="VibrateOnChange">Vibración si cambios un intervalo</string>
 	<string id="SoundOnChange">Tonos si cambios un intervalo</string>
 
+	<string id="Minutes">min</string>
 	<string id="ShortBreakLabel">Descanso corto!</string>
 	<string id="LongBreakLabel">Descanso largo!</string>
 	<string id="ReadyLabel">Listo!</string>
