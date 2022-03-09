@@ -7,23 +7,37 @@ using Toybox.Graphics;
 class ColorFactory {
 
     function getColorByPropertyKey(key as String) {
-        var value = App.getApp().getProperty(key);
-        return getColor(value);
+        if (self.isColorSupport()) {
+            var value = getProperty(key);
+            return getColor(value);
+        }
+        return Graphics.COLOR_WHITE;
+    }
+
+    function isColorSupport() {
+        return getProperty("colorSupport");
+    }
+
+    (:test)
+	function testGetColorByPropertyKey(logger) {
+		logger.debug("It should return a color from a property.");
+        var instance = new ColorFactory();
+        if (instance.isColorSupport()) {
+            return instance.getColorByPropertyKey("readyColor") == 16755200;
+        }
+		return instance.getColorByPropertyKey("readyColor") == Graphics.COLOR_WHITE;
+	}
+
+    private function getProperty(key) {
+        return App.getApp().getProperty(key);
     }
 
     function getColor(hexVal as String) {
         var red = to255(hexVal.substring(0, 2));
         var green = to255(hexVal.substring(2, 4));
-        var blue = to255(hexVal.substring(4, key.length()));
+        var blue = to255(hexVal.substring(4, hexVal.length()));
         return Graphics.createColor(0, red, green, blue);
     }
-
-    (:test)
-	function testGetColor(logger) {
-		logger.debug("It should return a color for hexadec FF0000.");
-        var instance = new ColorFactory();
-		return instance.getColor("FFAA00") == 16755200;
-	}
 
     function to255(hex as String) {
         var arr = hex.toCharArray();
