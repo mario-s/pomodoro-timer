@@ -63,9 +63,9 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 	(:test)
 	function testOnMenu(logger) {
 		logger.debug("Test for onMenu should should enable toggle item when on hold.");
-		var classUnderTest = new PomodoroDelegate();
+		var instance = new PomodoroDelegate();
 		Pomodoro.onHold();
-		classUnderTest.onMenu();
-		return classUnderTest.findHoldItem(classUnderTest.menu).isEnabled();
+		instance.onMenu();
+		return instance.findHoldItem(instance.menu).isEnabled();
 	}
 }

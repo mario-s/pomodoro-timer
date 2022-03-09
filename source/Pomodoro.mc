@@ -1,9 +1,9 @@
-using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.Attention as Attention;
 using Toybox.Timer as Timer;
 using Toybox.Lang as Lang;
 using Toybox.Math;
+using Toybox.Application as App;
 
 /**
  * Core module.
