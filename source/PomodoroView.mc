@@ -7,7 +7,6 @@ using Toybox.Lang;
 using Pomodoro;
 
 
-
 /**
  * Main App view.
  **/
