@@ -7,7 +7,7 @@ using Toybox.Graphics;
 class ColorFactory {
 
     function getColorByProperty(key as String) {
-        var value = getProperty(key);
+        var value = App.getApp().getProperty(key);
         return getColor(value);
     }
 
@@ -17,10 +17,6 @@ class ColorFactory {
         var instance = new ColorFactory();
 		return instance.getColorByProperty("readyColor") != Graphics.COLOR_BLACK;
 	}
-
-    private function getProperty(key) {
-        return App.getApp().getProperty(key);
-    }
 
     private function getColor(index) {
         switch(index) {
