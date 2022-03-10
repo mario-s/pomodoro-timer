@@ -18,12 +18,36 @@
 		<settingConfig type="boolean" />
 	</setting>
 	<setting propertyKey="@Properties.readyColor" title="@Strings.ReadyColor">
-		<settingConfig type="alphaNumeric" maxLength="6" />
+		<settingConfig type="list">
+            <listEntry value="0">@Strings.Blue</listEntry>
+            <listEntry value="1">@Strings.Green</listEntry>
+			<listEntry value="2">@Strings.Orange</listEntry>
+			<listEntry value="3">@Strings.Pink</listEntry>
+			<listEntry value="4">@Strings.Red</listEntry>
+			<listEntry value="5">@Strings.White</listEntry>
+			<listEntry value="6">@Strings.Yellow</listEntry>
+        </settingConfig>
 	</setting>
 	<setting propertyKey="@Properties.pomodoroColor" title="@Strings.PomodoroColor">
-		<settingConfig type="alphaNumeric" maxLength="6" />
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.Blue</listEntry>
+            <listEntry value="1">@Strings.Green</listEntry>
+			<listEntry value="2">@Strings.Orange</listEntry>
+			<listEntry value="3">@Strings.Pink</listEntry>
+			<listEntry value="4">@Strings.Red</listEntry>
+			<listEntry value="5">@Strings.White</listEntry>
+			<listEntry value="6">@Strings.Yellow</listEntry>
+        </settingConfig>
 	</setting>
 	<setting propertyKey="@Properties.breakColor" title="@Strings.BreakColor">
-		<settingConfig type="alphaNumeric" maxLength="6" />
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.Blue</listEntry>
+			<listEntry value="1">@Strings.Green</listEntry>
+			<listEntry value="2">@Strings.Orange</listEntry>
+			<listEntry value="3">@Strings.Pink</listEntry>
+			<listEntry value="4">@Strings.Red</listEntry>
+			<listEntry value="5">@Strings.White</listEntry>
+			<listEntry value="6">@Strings.Yellow</listEntry>
+        </settingConfig>
 	</setting>
 </settings>

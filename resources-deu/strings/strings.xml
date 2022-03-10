@@ -19,4 +19,12 @@
 	<string id="PomodoroColor">Farbe für Pomodoro</string>
 	<string id="ReadyColor">Farbe für Status 'Bereit'</string>
 	<string id="BreakColor">Farbe für Pause</string>
+
+	<string id="Blue">Blau</string>
+	<string id="Green">Grün</string>
+	<string id="Orange">Orange</string>
+	<string id="Pink">Rosa</string>
+	<string id="Red">Rot</string>
+	<string id="White">Weiß</string>
+	<string id="Yellow">Gelb</string>
 </strings>
