@@ -15,4 +15,8 @@
 	<string id="RestartMenuLabel">Restart</string>
 	<string id="HoldMenuLabel">Hold</string>
 	<string id="ExitMenuLabel">Exit</string>
+
+	<string id="PomodoroColor">Color for Pomodoro</string>
+	<string id="ReadyColor">Color for ready state</string>
+	<string id="BreakColor">Color for a break</string>
 </strings>

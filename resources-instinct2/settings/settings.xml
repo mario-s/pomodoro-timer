@@ -18,12 +18,12 @@
 		<settingConfig type="boolean" />
 	</setting>
 	<setting propertyKey="@Properties.readyColor" title="@Strings.ReadyColor">
-		<settingConfig type="alphaNumeric" maxLength="6" />
+		<settingConfig type="alphaNumeric" maxLength="6" readonly="true" />
 	</setting>
 	<setting propertyKey="@Properties.pomodoroColor" title="@Strings.PomodoroColor">
-		<settingConfig type="alphaNumeric" maxLength="6" />
+		<settingConfig type="alphaNumeric" maxLength="6" readonly="true" />
 	</setting>
 	<setting propertyKey="@Properties.breakColor" title="@Strings.BreakColor">
-		<settingConfig type="alphaNumeric" maxLength="6" />
+		<settingConfig type="alphaNumeric" maxLength="6" readonly="true" />
 	</setting>
 </settings>

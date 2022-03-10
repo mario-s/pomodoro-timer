@@ -6,7 +6,7 @@ using Toybox.Graphics;
  **/
 class ColorFactory {
 
-    function getColorByPropertyKey(key as String) {
+    function getColorByProperty(key as String) {
         if (isColorSupported()) {
             var value = getProperty(key);
             return getColor(value);
@@ -19,13 +19,13 @@ class ColorFactory {
     }
 
     (:test)
-	function testGetColorByPropertyKey(logger) {
+	function testGetColorByProperty(logger) {
 		logger.debug("It should return a color from a property.");
         var instance = new ColorFactory();
         if (instance.isColorSupported()) {
-            return instance.getColorByPropertyKey("readyColor") == 16755200;
+            return instance.getColorByProperty("readyColor") != Graphics.COLOR_WHITE;
         }
-		return instance.getColorByPropertyKey("readyColor") == Graphics.COLOR_WHITE;
+		return instance.getColorByProperty("readyColor") == Graphics.COLOR_WHITE;
 	}
 
     private function getProperty(key) {
@@ -41,14 +41,25 @@ class ColorFactory {
 
     function to255(hex as String) {
         var arr = hex.toCharArray();
-        return toDez(arr[0].toString()) * 16  + toDez(arr[1].toString());
+        try {
+            return toDez(arr[0].toString()) * 16  + toDez(arr[1].toString());
+        } catch (ex) {
+            return 255;
+        }
     }
 
     (:test)
-	function testTo255(logger) {
+	function testTo255_valid(logger) {
 		logger.debug("It should return 251 for hexadec FB.");
         var instance = new ColorFactory();
 		return instance.to255("FB") == 251;
+	}
+
+    (:test)
+	function testTo255_invalidHex(logger) {
+		logger.debug("It should return 251 for hexadec FB.");
+        var instance = new ColorFactory();
+		return instance.to255("XX") == 255;
 	}
 
     private function toDez(hex as String) {

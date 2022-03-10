@@ -10,9 +10,13 @@
 	<string id="Minutes">min</string>
 	<string id="ShortBreakLabel">Kurze Pause!</string>
 	<string id="LongBreakLabel">Lange Pause!</string>
-	<string id="ReadyLabel">Fertig!</string>
+	<string id="ReadyLabel">Bereit!</string>
 
 	<string id="RestartMenuLabel">Neustart</string>
 	<string id="HoldMenuLabel">Anhalten</string>
 	<string id="ExitMenuLabel">Beenden</string>
+
+	<string id="PomodoroColor">Farbe für Pomodoro</string>
+	<string id="ReadyColor">Farbe für Status 'Bereit'</string>
+	<string id="BreakColor">Farbe für Pause</string>
 </strings>

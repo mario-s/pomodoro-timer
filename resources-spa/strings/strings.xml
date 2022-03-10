@@ -15,4 +15,8 @@
 	<string id="RestartMenuLabel">Reiniciar</string>
 	<string id="HoldMenuLabel">Parar</string>
 	<string id="ExitMenuLabel">Salir</string>
+
+	<string id="PomodoroColor">Color para Pomodoro</string>
+	<string id="ReadyColor">Color cuando listo</string>
+	<string id="BreakColor">Color para pausa</string>
 </strings>
