@@ -57,7 +57,7 @@ class ColorFactory {
 
     (:test)
 	function testTo255_invalidHex(logger) {
-		logger.debug("It should return 251 for hexadec FB.");
+		logger.debug("It should return 255 for for invalid hex.");
         var instance = new ColorFactory();
 		return instance.to255("XX") == 255;
 	}
