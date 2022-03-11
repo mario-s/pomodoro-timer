@@ -50,9 +50,9 @@ class PomodoroView extends Ui.View {
 		holdIcon = Ui.loadResource(Rez.Drawables.on_hold);
 
 		var factory = new ColorFactory();
-		readyColor = factory.getColorByPropertyKey("readyColor");
-		pomodoroColor = factory.getColorByPropertyKey("pomodoroColor");
-		breakColor = factory.getColorByPropertyKey("breakColor");
+		readyColor = factory.getColorByProperty("readyColor");
+		pomodoroColor = factory.getColorByProperty("pomodoroColor");
+		breakColor = factory.getColorByProperty("breakColor");
 	}
 
 	private function calculateLayout(width, height) {
