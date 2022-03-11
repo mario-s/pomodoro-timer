@@ -12,6 +12,7 @@ An implementation of the [Pomodoro technique](https://en.wikipedia.org/wiki/Pomo
    * duration of the long break between groups of Pomodoros (default: 30 minutes)
    * the number of Pomodoros in a group (default: 4)
    * alert on change from Pomodoro to break and vice versa
+   * color of a Pomodoro session, break and ready state (when supported by device)
 
 ## Development
 
