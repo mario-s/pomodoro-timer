@@ -1,4 +1,6 @@
-240x240 => 40x40
+40x40 (default):
+----------------
+240x240
 d2bravo
 d2charlie
 d2delta/px/s
@@ -11,3 +13,18 @@ fr745
 fr935
 fr945/lte
 marq (all)
+
+260x260 => 40x40
+fenix6
+fenix7
+
+280x280 => 40x40
+descentmk2
+enduro
+fenix6x
+fenix7x
+
+
+260x260 => 35x35
+approach62
+vivoactive4
