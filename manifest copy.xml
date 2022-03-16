@@ -7,13 +7,10 @@
         <iq:products>
             <iq:product id="epix2"/>
             <iq:product id="fr55"/>
-            <iq:product id="legacyherocaptainmarvel"/>
-            <iq:product id="legacysagarey"/>
             <iq:product id="venu2s"/>
             <iq:product id="venud"/>
             <iq:product id="venusq"/>
             <iq:product id="venusqm"/>
-            <iq:product id="vivoactive4s"/>
         </iq:products>
         <iq:permissions/>
         <iq:languages>
