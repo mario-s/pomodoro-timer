@@ -3,8 +3,8 @@ An implementation of the [Pomodoro technique](https://en.wikipedia.org/wiki/Pomo
 
 ![d2air](https://user-images.githubusercontent.com/4089975/158851413-a9195857-827a-4002-90a5-b2a16d15a3e4.png)
 ![venusq](https://user-images.githubusercontent.com/4089975/158851489-c761863b-d762-4134-97f4-2a1b71ccc94c.png)
-![fenix7s](https://user-images.githubusercontent.com/4089975/158851447-d7714e4f-dd35-442e-a10d-432700fb8284.png)
 ![instinct2](https://user-images.githubusercontent.com/4089975/158851472-d2079bbf-b4ba-49be-8985-38fcbfa1c75e.png)
+![fenix7s](https://user-images.githubusercontent.com/4089975/158851447-d7714e4f-dd35-442e-a10d-432700fb8284.png)
 
 ## Features
 * Keeps track of time left in your Pomodoro session, as well as break time and overal number of Pomodoros.
