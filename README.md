@@ -7,11 +7,11 @@ An implementation of the [Pomodoro technique](https://en.wikipedia.org/wiki/Pomo
 ![fenix7s](https://user-images.githubusercontent.com/4089975/158851447-d7714e4f-dd35-442e-a10d-432700fb8284.png)
 
 ## Features
-* Keeps track of time left in your Pomodoro session, as well as break time and overal number of Pomodoros.
+* Keeps track of time left in your Pomodoro session, as well as break time and overall number of Pomodoros.
 * Alerts you with vibrations and tones (if supported by device).
 * Visualization of the countdown as a circle.
 * Possibility to stop the timer and continue.
-* You can customize a lot of aspects:
+* You can customize the following aspects:
    * duration of one Pomodoro (default: 25 minutes)
    * duration of the short break between Pomodoros (default: 5 minutes)
    * duration of the long break between groups of Pomodoros (default: 30 minutes)
