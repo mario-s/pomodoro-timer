@@ -1,4 +1,4 @@
 <drawables>
-	<bitmap id="LauncherIcon" filename="launcher_icon_70.png" scaleRelativeTo="screen"/>
+	<bitmap id="LauncherIcon" filename="launcher_icon.png" scaleRelativeTo="screen"/>
 	<bitmap id="on_hold" filename="timer_off_white_24x24.png" />
 </drawables>
