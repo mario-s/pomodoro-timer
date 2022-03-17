@@ -3,8 +3,8 @@ An implementation of the [Pomodoro technique](https://en.wikipedia.org/wiki/Pomo
 
 ## Features
 * Keeps track of time left in your Pomodoro session, as well as break time and overal number of Pomodoros.
-* Alerts you using vibrations and tones (if supported by device).
-* Vizualisation of the countdown as a circle.
+* Alerts you with vibrations and tones (if supported by device).
+* Visualization of the countdown as a circle.
 * Possibility to stop the timer and continue.
 * You can customize a lot of aspects:
    * duration of one Pomodoro (default: 25 minutes)
@@ -29,7 +29,7 @@ There are two Shell scripts for testing:
 3. If the device has a an icon size which is not yet supported, add a new resources.
 
 ### Icon Size
- Since there are a lot of wearable, which use an icon size of 40 x 40, this is the default size. If there are more than one waerables with same screen and icon size, which are not supported yet, it is better to use a resource, based on shape and screen size. For instance the folder `resource-round-416x416`is used by devices with a round screen and 416x416 size.
+ Since there are a lot of wearable, which use an icon size of 40 x 40, this is the default size. If there are more than one waerables with same screen and icon size, it is better to use a resource, based on shape and screen size. For instance the folder `resource-round-416x416`is used by devices with a round screen and 416x416 screen size.
 More about screen and icon size can be found in the [Device Reference.](https://developer.garmin.com/connect-iq/reference-guides/devices-reference/)
 
 | Screen Shape | Screen Size | Icon Size |
