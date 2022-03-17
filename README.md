@@ -1,10 +1,6 @@
 # PomodoroTimer
 An implementation of the [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) for Garmin wearables. Inspired by [Garmodoro](https://github.com/klimeryk/garmodoro), however this PomodoroTimer has no support for handheld devices.
 
-![D2 Air](/screenshots/d2air.png)
-![Venus Sq](/screenshots/venusq.png)
-![Instict2](/screenshots/instinct2.png)
-![Fenix 7s](/screenshots/fenix7s.png)
 
 ## Features
 * Keeps track of time left in your Pomodoro session, as well as break time and overal number of Pomodoros.
