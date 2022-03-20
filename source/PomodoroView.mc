@@ -12,6 +12,8 @@ using Pomodoro;
  **/
 class PomodoroView extends Ui.View {
 
+	private const PEN_WIDTH = 3;
+
 	private var minutes;
 	private var shortBreakLabel;
 	private var longBreakLabel;
@@ -136,7 +138,7 @@ class PomodoroView extends Ui.View {
 
 	private function drawCountdown(dc) {
 		var degreeEnd = Pomodoro.getCountdownDegree();
-		dc.setPenWidth(3);
+		dc.setPenWidth(PEN_WIDTH);
 		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, Pomodoro.RECTANGULAR, degreeEnd);
 	}
 
