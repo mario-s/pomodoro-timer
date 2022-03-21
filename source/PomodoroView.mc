@@ -61,12 +61,12 @@ class PomodoroView extends Ui.View {
 		self.centerX =  width / 2;
 		self.centerY = height / 2;
 		if (centerY < centerY) {
-			radius = centerY - 3;
+			radius = centerY - 4;
 		} else {
-			radius = centerY - 3;
+			radius = centerY - 4;
 		}
 
-		self.timeOffset = height - Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD) - 5;
+		self.timeOffset = height - Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD) - 7;
 		calculatePomodoroOffset();
 
 		var largeFontHeight = Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT);
@@ -77,11 +77,11 @@ class PomodoroView extends Ui.View {
 	}
 
 	private function calculatePomodoroOffset() {
-		self.pomodoroOffset = 20;
+		self.pomodoroOffset = 22;
 		var screenShape = System.getDeviceSettings().screenShape;
 		if (System.SCREEN_SHAPE_RECTANGLE != screenShape) {
 			self.pomodoroOffset += Gfx.getFontHeight(Gfx.FONT_MEDIUM);
-			self.timeOffset -= 20;
+			self.timeOffset -= 15;
 		}
 	}
 
@@ -137,10 +137,10 @@ class PomodoroView extends Ui.View {
 	}
 
 	private function drawCountdown(dc) {
-		var degreeEnd = Pomodoro.getCountdownDegree();
-		dc.drawCircle(centerX, 3, 3);
+		var loc = Pomodoro.getArcLocation(self.radius);
+		dc.drawCircle(centerX + loc.x, centerY - loc.y, 2);
 		dc.setPenWidth(PEN_WIDTH);
-		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, Pomodoro.RECTANGULAR, degreeEnd);
+		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, Pomodoro.RECTANGULAR, loc.degree);
 	}
 
 	private function drawMinutes(dc) {
