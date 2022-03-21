@@ -12,7 +12,7 @@ using Pomodoro;
  **/
 class PomodoroView extends Ui.View {
 
-	private const PEN_WIDTH = 3;
+	private const PEN_WIDTH = 2;
 
 	private var minutes;
 	private var shortBreakLabel;
@@ -61,9 +61,9 @@ class PomodoroView extends Ui.View {
 		self.centerX =  width / 2;
 		self.centerY = height / 2;
 		if (centerY < centerY) {
-			radius = centerY - 2;
+			radius = centerY - 3;
 		} else {
-			radius = centerY - 2;
+			radius = centerY - 3;
 		}
 
 		self.timeOffset = height - Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD) - 5;
@@ -138,6 +138,7 @@ class PomodoroView extends Ui.View {
 
 	private function drawCountdown(dc) {
 		var degreeEnd = Pomodoro.getCountdownDegree();
+		dc.drawCircle(centerX, 3, 3);
 		dc.setPenWidth(PEN_WIDTH);
 		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, Pomodoro.RECTANGULAR, degreeEnd);
 	}

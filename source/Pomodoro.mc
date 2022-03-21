@@ -5,6 +5,7 @@ using Toybox.Lang as Lang;
 using Toybox.Math;
 using Toybox.Application as App;
 
+
 /**
  * Core module.
  **/
@@ -82,15 +83,20 @@ module Pomodoro {
 		return RECTANGULAR + Math.ceil(deg);
 	}
 
+	function getArcPoint(radius as Numeric) {
+		var deg = getCountdownDegree();
+		return new Location(deg, 0, 0);
+	}
+
 	(:test)
-	function testGetCountdownDegree(logger) {
+	function testGetArcPoint(logger) {
 		logger.debug("It should return 92° when 10 seconds are past.");
 		initInterval(25);
 		currentState = STATE_RUNNING;
 		for(var i = 0; i < 10; i++) {
 			onSecondChanged();
 		}
-		return getCountdownDegree() == 92 && intervalCountdown == 1490000;
+		return getArcPoint(10).degree == 92 && intervalCountdown == 1490000;
 	}
 
 	function getMinutesLeft() {
