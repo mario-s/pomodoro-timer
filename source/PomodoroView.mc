@@ -25,7 +25,7 @@ class PomodoroView extends Ui.View {
 	private var radius;
 
 	private var pomodoroOffset;
-	private var captionOffset;
+	private var captionOffsetX;
 	private var readyLabelOffset;
 	private var minutesOffset;
 	private var timeOffset;
@@ -67,10 +67,10 @@ class PomodoroView extends Ui.View {
 		}
 
 		calculateTopAndBottom(height);
-		var largeFontHeight = Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT);
+
 		self.readyLabelOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_LARGE) / 2);
-		self.minutesOffset = self.centerY - largeFontHeight / 2;
-		self.captionOffset = centerX + (centerX / 2);
+		self.minutesOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT) / 2);
+		self.captionOffsetX = centerX + (centerX / 2);
 		self.holdIconX = 30;
 	}
 
@@ -145,7 +145,7 @@ class PomodoroView extends Ui.View {
 	private function drawMinutes(dc) {
 		var minutesAsText = Pomodoro.getMinutesLeft().format("%02d");
 		dc.drawText(self.centerX, self.minutesOffset, Gfx.FONT_NUMBER_THAI_HOT, minutesAsText, Gfx.TEXT_JUSTIFY_CENTER);
-		dc.drawText(self.captionOffset, self.centerY, Gfx.FONT_TINY, self.minutes, Gfx.TEXT_JUSTIFY_CENTER);
+		dc.drawText(self.captionOffsetX, self.centerY, Gfx.FONT_TINY, self.minutes, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
 	private function drawTime(dc) {
