@@ -66,9 +66,7 @@ class PomodoroView extends Ui.View {
 			radius = self.centerY - 4;
 		}
 
-		self.timeOffset = height - Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD) - 7;
-		calculatePomodoroOffset();
-
+		calculateTopAndBottom(height);
 		var largeFontHeight = Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT);
 		self.readyLabelOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_LARGE) / 2);
 		self.minutesOffset = self.centerY - largeFontHeight / 2;
@@ -76,12 +74,13 @@ class PomodoroView extends Ui.View {
 		self.holdIconX = 30;
 	}
 
-	private function calculatePomodoroOffset() {
-		self.pomodoroOffset = 22;
+	private function calculateTopAndBottom(height) {
+		self.pomodoroOffset = 28;
+		self.timeOffset = height - Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD) - 15;
 		var screenShape = System.getDeviceSettings().screenShape;
 		if (System.SCREEN_SHAPE_RECTANGLE != screenShape) {
-			self.pomodoroOffset += Gfx.getFontHeight(Gfx.FONT_MEDIUM);
-			self.timeOffset -= 15;
+			self.pomodoroOffset += Gfx.getFontHeight(Gfx.FONT_MEDIUM) - 15;
+			self.timeOffset -= 10;
 		}
 	}
 
