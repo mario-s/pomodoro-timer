@@ -138,7 +138,7 @@ class PomodoroView extends Ui.View {
 
 	private function drawCountdown(dc) {
 		var loc = Pomodoro.getArcLocation(self.radius);
-		dc.drawCircle(centerX + loc.x, centerY - loc.y, 2);
+		dc.fillCircle(centerX + loc.x, centerY - loc.y, 3);
 		dc.setPenWidth(PEN_WIDTH);
 		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, Pomodoro.RECTANGULAR, loc.degree);
 	}
