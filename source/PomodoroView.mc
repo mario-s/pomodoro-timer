@@ -60,10 +60,10 @@ class PomodoroView extends Ui.View {
 	private function calculateLayout(width, height) {
 		self.centerX =  width / 2;
 		self.centerY = height / 2;
-		if (centerY < centerY) {
-			radius = centerY - 4;
+		if (self.centerX < self.centerY) {
+			radius = self.centerX - 4;
 		} else {
-			radius = centerY - 4;
+			radius = self.centerY - 4;
 		}
 
 		self.timeOffset = height - Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD) - 7;
