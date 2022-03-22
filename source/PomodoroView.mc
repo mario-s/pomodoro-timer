@@ -4,7 +4,7 @@ using Toybox.System as System;
 using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.Lang;
-using Toybox.Math;
+using CoordConverter;
 using Pomodoro;
 
 
@@ -21,9 +21,9 @@ class PomodoroView extends Ui.View {
 	private var readyLabel;
 	private var holdIcon;
 
-	var centerX;
-	var centerY;
-	var radius;
+	private var centerX;
+	private var centerY;
+	private var radius;
 
 	private var pomodoroOffset;
 	private var captionOffsetX;
@@ -144,22 +144,11 @@ class PomodoroView extends Ui.View {
 		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, Pomodoro.RECTANGULAR, deg);
 	}
 
-	function getCircleLocation(deg as Numeric) {
-		var rad = Math.toRadians(deg);
-		var x = self.centerX + (self.radius * Math.cos(rad));
-		var y = self.centerY - (self.radius * Math.sin(rad));
+	private function getCircleLocation(deg as Numeric) {
+		var loc = CoordConverter.getCartesian(self.radius, deg);
+		var x = self.centerX + loc[0];
+		var y = self.centerY - loc[1];
 		return [x, y];
-	}
-
-	(:test)
-	function testGetCircleLocation(logger) {
-		logger.debug("Test for getCircleLocation should return Cartesian coordinates.");
-		var instance = new PomodoroView();
-		instance.radius = 1;
-		instance.centerX = 1;
-		instance.centerY = 1;
-		var loc = instance.getCircleLocation(45);
-		return loc[0].format("%.2f").equals("1.71") && loc[1].format("%.2f").equals("0.29");
 	}
 
 	private function drawMinutes(dc) {
