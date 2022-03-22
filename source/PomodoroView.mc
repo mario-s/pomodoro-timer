@@ -141,11 +141,11 @@ class PomodoroView extends Ui.View {
 		var loc = getCircleLocation(deg);
 		dc.fillCircle(loc[0], loc[1], 3);
 		dc.setPenWidth(PEN_WIDTH);
-		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, Pomodoro.RECTANGULAR, deg);
+		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, CoordConverter.RECTANGULAR, deg);
 	}
 
 	private function getCircleLocation(deg as Numeric) {
-		var loc = CoordConverter.getCartesian(self.radius, deg);
+		var loc = CoordConverter.toCartesian(self.radius, deg);
 		var x = self.centerX + loc[0];
 		var y = self.centerY - loc[1];
 		return [x, y];

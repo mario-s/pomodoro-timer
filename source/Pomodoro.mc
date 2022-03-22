@@ -4,15 +4,13 @@ using Toybox.Timer as Timer;
 using Toybox.Lang as Lang;
 using Toybox.Math;
 using Toybox.Application as App;
+using CoordConverter;
 
 
 /**
  * Core module.
  **/
 module Pomodoro {
-
-	const FULL_ARC = 360;
-	const RECTANGULAR = 90;
 
 	// 1 second in ms
 	const SECOND = 1000;
@@ -79,8 +77,7 @@ module Pomodoro {
 	}
 
 	function getArcDegree() {
-		var d = FULL_ARC * (intervalLength - intervalCountdown) / intervalLength;
-		return RECTANGULAR + Math.ceil(d);
+		return CoordConverter.toArcDegree(intervalLength, intervalCountdown);
 	}
 
 	(:test)
