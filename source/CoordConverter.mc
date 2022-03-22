@@ -17,7 +17,7 @@ module CoordConverter {
 
 	(:test)
 	function testToCartesian(logger) {
-		logger.debug("Test for toCartesian should return Cartesian coordinates.");
+		logger.debug("It should convert Polar coordinates into Cartesian coordinates.");
 		var loc = toCartesian(1, 45);
 		return loc[0].format("%.2f").equals("0.71") && loc[1].format("%.2f").equals("0.71");
 	}
@@ -29,9 +29,8 @@ module CoordConverter {
 
     (:test)
 	function testToArcDegree(logger) {
-		logger.debug("Test for toArcDegree should return degree of the arc.");
+		logger.debug("It should calculate the degree for the arc based on the interval.");
 		var deg = toArcDegree(25000, 8000);
-        logger.debug(deg);
 		return deg == 334;
 	}
 }

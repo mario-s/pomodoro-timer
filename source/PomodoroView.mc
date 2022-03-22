@@ -100,6 +100,29 @@ class PomodoroView extends Ui.View {
 		drawTime(dc);
 	}
 
+	(:test)
+	function testOnUpdate_Ready(logger) {
+		logger.debug("It should update the layout for state ready.");
+		var instance = new PomodoroView();
+		var mock = new DcMock();
+		instance.onLayout(mock);
+		instance.onUpdate(mock);
+		return true;
+	}
+
+	(:test)
+	function testOnUpdate_Running(logger) {
+		logger.debug("It should update the layout for state running.");
+		Pomodoro.initialize();
+		Pomodoro.startTimer();
+		var instance = new PomodoroView();
+		var mock = new DcMock();
+		instance.onLayout(mock);
+		Pomodoro.start();
+		instance.onUpdate(mock);
+		return true;
+	}
+
 	private function clearView(dc) {
 		dc.setColor(Gfx.COLOR_TRANSPARENT, Gfx.COLOR_BLACK);
 		dc.clear();

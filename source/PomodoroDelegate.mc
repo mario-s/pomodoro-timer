@@ -43,7 +43,7 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 
 	(:test)
 	function testOnSelect(logger) {
-		logger.debug("Test for onSelect should change to state running.");
+		logger.debug("It should change to state running in onSelect.");
 		PomodoroDelegate.onSelect();
 		return Pomodoro.isRunning();
 	}
