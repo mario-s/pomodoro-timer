@@ -78,25 +78,20 @@ module Pomodoro {
 		}
 	}
 
-	function getArcLocation(radius as Numeric) {
+	function getArcDegree() {
 		var d = FULL_ARC * (intervalLength - intervalCountdown) / intervalLength;
-		var deg = RECTANGULAR + Math.ceil(d);
-		var rad = Math.toRadians(deg);
-		var x = radius * Math.cos(rad);
-		var y = radius * Math.sin(rad);
-		return new Location(deg, x, y);
+		return RECTANGULAR + Math.ceil(d);
 	}
 
 	(:test)
-	function testgetArcLocation(logger) {
+	function testgetArcDegree(logger) {
 		logger.debug("It should return 92° when 10 seconds are past.");
 		initInterval(25);
 		currentState = STATE_RUNNING;
 		for(var i = 0; i < 10; i++) {
 			onSecondChanged();
 		}
-		var loc = getArcLocation(10);
-		return loc.degree == 92 && loc.x <= -0.3 && loc.x >= -0.35 && intervalCountdown == 1490000;
+		return getArcDegree() == 92 && intervalCountdown == 1490000;
 	}
 
 	function getMinutesLeft() {
