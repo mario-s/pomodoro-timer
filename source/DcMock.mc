@@ -48,7 +48,7 @@ class DcMock {
     }
 
     function drawArc(x, y, radius, dir, start, end) {
-        Test.assertEqual(start, CoordConverter.RECTANGULAR);
+        Test.assertEqual(start, Geometry.RECTANGULAR);
         invocations.add("drawArc");
     }
 

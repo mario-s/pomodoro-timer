@@ -4,7 +4,7 @@ using Toybox.System as System;
 using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.Lang;
-using CoordConverter;
+using Geometry;
 using Pomodoro;
 
 
@@ -169,11 +169,11 @@ class PomodoroView extends Ui.View {
 		var loc = getCircleLocation(deg);
 		dc.fillCircle(loc[0], loc[1], 3);
 		dc.setPenWidth(PEN_WIDTH);
-		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, CoordConverter.RECTANGULAR, deg);
+		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, Geometry.RECTANGULAR, deg);
 	}
 
 	private function getCircleLocation(deg as Numeric) {
-		var loc = CoordConverter.toCartesian(self.radius, deg);
+		var loc = Geometry.toCartesian(self.radius, deg);
 		var x = self.centerX + loc[0];
 		var y = self.centerY - loc[1];
 		return [x, y];

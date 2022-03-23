@@ -1,17 +1,20 @@
-using Toybox.Math;
+using Toybox.Math as Mat;
 
 /**
- * Module to convert between coordinate systems.
+ * Geometry module of this app.
  **/
-module CoordConverter {
+module Geometry {
 
     const FULL_ARC = 360;
 	const RECTANGULAR = 90;
 
+    /**
+     * Converts Polar coordinates to Cartesian coordinates.
+     **/
     function toCartesian(radius as Numeric, deg as Numeric) {
-		var rad = Math.toRadians(deg);
-		var x = radius * Math.cos(rad);
-		var y = radius * Math.sin(rad);
+		var rad = Mat.toRadians(deg);
+		var x = radius * Mat.cos(rad);
+		var y = radius * Mat.sin(rad);
 		return [x, y];
 	}
 
@@ -22,9 +25,12 @@ module CoordConverter {
 		return loc[0].format("%.2f").equals("0.71") && loc[1].format("%.2f").equals("0.71");
 	}
 
+    /**
+     * Converts the elapsed countdown of an interval in to degrees of an arc.
+     **/
     function toArcDegree(intervalLength, intervalCountdown) {
         var d = FULL_ARC * (intervalLength - intervalCountdown) / intervalLength;
-		return RECTANGULAR + Math.ceil(d);
+		return RECTANGULAR + Mat.ceil(d);
     }
 
     (:test)

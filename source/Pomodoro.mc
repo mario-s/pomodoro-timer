@@ -4,7 +4,7 @@ using Toybox.Timer as Timer;
 using Toybox.Lang as Lang;
 using Toybox.Math;
 using Toybox.Application as App;
-using CoordConverter;
+using Geometry;
 
 
 /**
@@ -77,7 +77,7 @@ module Pomodoro {
 	}
 
 	function getArcDegree() {
-		return CoordConverter.toArcDegree(intervalLength, intervalCountdown);
+		return Geometry.toArcDegree(intervalLength, intervalCountdown);
 	}
 
 	(:test)
