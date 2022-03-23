@@ -105,9 +105,11 @@ class PomodoroView extends Ui.View {
 		logger.debug("It should update the layout for state ready.");
 		var instance = new PomodoroView();
 		var mock = new DcMock();
+
 		instance.onLayout(mock);
 		instance.onUpdate(mock);
-		return true;
+
+		return mock.invoked(["clear", "setColor", "drawText"]);
 	}
 
 	(:test)
@@ -117,10 +119,13 @@ class PomodoroView extends Ui.View {
 		Pomodoro.startTimer();
 		var instance = new PomodoroView();
 		var mock = new DcMock();
+
 		instance.onLayout(mock);
 		Pomodoro.start();
 		instance.onUpdate(mock);
-		return true;
+
+		var methods = ["clear", "setColor", "drawText", "setPenWidth","drawArc", "fillCircle"];
+		return mock.invoked(methods);
 	}
 
 	private function clearView(dc) {
