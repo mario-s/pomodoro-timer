@@ -1,10 +1,10 @@
 # PomodoroTimer
 An implementation of the [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) for Garmin wearables. Inspired by [Garmodoro](https://github.com/klimeryk/garmodoro), however this PomodoroTimer has no support for handheld devices.
 
-![d2air](https://user-images.githubusercontent.com/4089975/158851413-a9195857-827a-4002-90a5-b2a16d15a3e4.png)
-![venusq](https://user-images.githubusercontent.com/4089975/158851489-c761863b-d762-4134-97f4-2a1b71ccc94c.png)
-![instinct2](https://user-images.githubusercontent.com/4089975/158851472-d2079bbf-b4ba-49be-8985-38fcbfa1c75e.png)
-![fenix7s](https://user-images.githubusercontent.com/4089975/158851447-d7714e4f-dd35-442e-a10d-432700fb8284.png)
+![d2air](https://user-images.githubusercontent.com/4089975/159896378-b19684aa-29fa-4de7-af62-5cd078b2b802.png)
+![venusq](https://user-images.githubusercontent.com/4089975/159896421-25b6a705-aba9-4dd6-9c97-d12c299f3df7.png)
+![instinct2](https://user-images.githubusercontent.com/4089975/159896470-fd6cdc2f-c53c-4a55-ab52-441e64e3c406.png)
+![fenix7s](https://user-images.githubusercontent.com/4089975/159896512-2b44a2c4-0e13-4087-b32a-f7a5bcd6e87d.png)
 
 ## Features
 * Keeps track of time left in your Pomodoro session, as well as break time and overall number of Pomodoros.
