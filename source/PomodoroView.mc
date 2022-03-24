@@ -4,6 +4,7 @@ using Toybox.System as System;
 using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.Lang;
+using Geometry;
 using Pomodoro;
 
 
@@ -11,6 +12,8 @@ using Pomodoro;
  * Main App view.
  **/
 class PomodoroView extends Ui.View {
+
+	private const PEN_WIDTH = 2;
 
 	private var minutes;
 	private var shortBreakLabel;
@@ -23,7 +26,7 @@ class PomodoroView extends Ui.View {
 	private var radius;
 
 	private var pomodoroOffset;
-	private var captionOffset;
+	private var captionOffsetX;
 	private var readyLabelOffset;
 	private var minutesOffset;
 	private var timeOffset;
@@ -58,28 +61,27 @@ class PomodoroView extends Ui.View {
 	private function calculateLayout(width, height) {
 		self.centerX =  width / 2;
 		self.centerY = height / 2;
-		if (centerY < centerY) {
-			radius = centerY - 2;
+		if (self.centerX < self.centerY) {
+			radius = self.centerX - 4;
 		} else {
-			radius = centerY - 2;
+			radius = self.centerY - 4;
 		}
 
-		self.timeOffset = height - Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD) - 5;
-		calculatePomodoroOffset();
+		calculateTopAndBottom(height);
 
-		var largeFontHeight = Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT);
 		self.readyLabelOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_LARGE) / 2);
-		self.minutesOffset = self.centerY - largeFontHeight / 2;
-		self.captionOffset = centerX + (centerX / 2);
+		self.minutesOffset = self.centerY - (Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT) / 2);
+		self.captionOffsetX = centerX + (centerX / 2);
 		self.holdIconX = 30;
 	}
 
-	private function calculatePomodoroOffset() {
-		self.pomodoroOffset = 20;
+	private function calculateTopAndBottom(height) {
+		self.pomodoroOffset = 28;
+		self.timeOffset = height - Gfx.getFontHeight(Gfx.FONT_NUMBER_MILD) - 15;
 		var screenShape = System.getDeviceSettings().screenShape;
 		if (System.SCREEN_SHAPE_RECTANGLE != screenShape) {
-			self.pomodoroOffset += Gfx.getFontHeight(Gfx.FONT_MEDIUM);
-			self.timeOffset -= 20;
+			self.pomodoroOffset += Gfx.getFontHeight(Gfx.FONT_MEDIUM) - 15;
+			self.timeOffset -= 10;
 		}
 	}
 
@@ -96,6 +98,34 @@ class PomodoroView extends Ui.View {
 
 		drawIcon(dc);
 		drawTime(dc);
+	}
+
+	(:test)
+	function testOnUpdate_Ready(logger) {
+		logger.debug("It should update the layout for state ready.");
+		var instance = new PomodoroView();
+		var mock = new DcMock();
+
+		instance.onLayout(mock);
+		instance.onUpdate(mock);
+
+		return mock.invoked(["clear", "setColor", "drawText"]);
+	}
+
+	(:test)
+	function testOnUpdate_Running(logger) {
+		logger.debug("It should update the layout for state running.");
+		Pomodoro.initialize();
+		Pomodoro.startTimer();
+		var instance = new PomodoroView();
+		var mock = new DcMock();
+
+		instance.onLayout(mock);
+		Pomodoro.start();
+		instance.onUpdate(mock);
+
+		var methods = ["clear", "setColor", "drawText", "setPenWidth","drawArc", "fillCircle"];
+		return mock.invoked(methods);
 	}
 
 	private function clearView(dc) {
@@ -135,14 +165,24 @@ class PomodoroView extends Ui.View {
 	}
 
 	private function drawCountdown(dc) {
-		var degreeEnd = Pomodoro.getCountdownDegree();
-		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, Pomodoro.RECTANGULAR, degreeEnd);
+		var deg = Pomodoro.getArcDegree();
+		var loc = getCircleLocation(deg);
+		dc.fillCircle(loc[0], loc[1], 3);
+		dc.setPenWidth(PEN_WIDTH);
+		dc.drawArc(centerX, centerY, radius, Graphics.ARC_CLOCKWISE, Geometry.RECTANGULAR, deg);
+	}
+
+	private function getCircleLocation(deg as Numeric) {
+		var loc = Geometry.toCartesian(self.radius, deg);
+		var x = self.centerX + loc[0];
+		var y = self.centerY - loc[1];
+		return [x, y];
 	}
 
 	private function drawMinutes(dc) {
 		var minutesAsText = Pomodoro.getMinutesLeft().format("%02d");
 		dc.drawText(self.centerX, self.minutesOffset, Gfx.FONT_NUMBER_THAI_HOT, minutesAsText, Gfx.TEXT_JUSTIFY_CENTER);
-		dc.drawText(self.captionOffset, self.centerY, Gfx.FONT_TINY, self.minutes, Gfx.TEXT_JUSTIFY_CENTER);
+		dc.drawText(self.captionOffsetX, self.centerY, Gfx.FONT_TINY, self.minutes, Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
 	private function drawTime(dc) {

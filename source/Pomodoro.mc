@@ -4,14 +4,13 @@ using Toybox.Timer as Timer;
 using Toybox.Lang as Lang;
 using Toybox.Math;
 using Toybox.Application as App;
+using Geometry;
+
 
 /**
  * Core module.
  **/
 module Pomodoro {
-
-	const FULL_ARC = 360;
-	const RECTANGULAR = 90;
 
 	// 1 second in ms
 	const SECOND = 1000;
@@ -77,20 +76,19 @@ module Pomodoro {
 		}
 	}
 
-	function getCountdownDegree() {
-		var deg = FULL_ARC * (intervalLength - intervalCountdown) / intervalLength;
-		return RECTANGULAR + Math.ceil(deg);
+	function getArcDegree() {
+		return Geometry.toArcDegree(intervalLength, intervalCountdown);
 	}
 
 	(:test)
-	function testGetCountdownDegree(logger) {
+	function testgetArcDegree(logger) {
 		logger.debug("It should return 92° when 10 seconds are past.");
 		initInterval(25);
 		currentState = STATE_RUNNING;
 		for(var i = 0; i < 10; i++) {
 			onSecondChanged();
 		}
-		return getCountdownDegree() == 92 && intervalCountdown == 1490000;
+		return getArcDegree() == 92 && intervalCountdown == 1490000;
 	}
 
 	function getMinutesLeft() {
