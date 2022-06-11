@@ -18,7 +18,7 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 	}
 
 	function onBack() {
-		Ui.popView(Ui.SLIDE_RIGHT);
+		onMenu();
 		return true;
 	}
 

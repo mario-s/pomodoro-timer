@@ -14,7 +14,7 @@ class StopMenuDelegate extends Ui.Menu2InputDelegate {
 
 	function onBack() {
 		//leave the menu
-        WatchUi.popView(WatchUi.SLIDE_DOWN);
+        Ui.popView(WatchUi.SLIDE_DOWN);
     }
 
 	function onSelect(item as MenuItem) {
