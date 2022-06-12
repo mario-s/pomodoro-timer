@@ -8,7 +8,7 @@ class NumberPicker extends Ui.Picker {
             :locX=>WatchUi.LAYOUT_HALIGN_CENTER,
             :locY=>WatchUi.LAYOUT_VALIGN_BOTTOM,
             :color=>Graphics.COLOR_WHITE});
-        var factory = new NumberFactory(1, 25, 1);
+        var factory = new NumberFactory(1, 25);
 
         Picker.initialize({
             :title=>title,

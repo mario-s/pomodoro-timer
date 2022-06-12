@@ -9,12 +9,12 @@ class NumberFactory extends WatchUi.PickerFactory {
     private var increment as Number;
     private var formatString as String;
 
-    public function initialize(start as Number, stop as Number, increment as Number) {
+    public function initialize(start as Number, stop as Number) {
         PickerFactory.initialize();
 
         self.start = start;
         self.stop = stop;
-        self.increment = increment;
+        self.increment = 1;
         formatString = "%d";
     }
 
@@ -37,7 +37,7 @@ class NumberFactory extends WatchUi.PickerFactory {
     (:test)
     function testGetIndex(logger) {
         logger.debug("It should return 2 for index.");
-        var instance = new NumberFactory(1, 25, 1);
+        var instance = new NumberFactory(1, 25);
         return  instance.getIndex(3) == 2;
     }
 
@@ -48,7 +48,7 @@ class NumberFactory extends WatchUi.PickerFactory {
     (:test)
     function testGetValue(logger) {
         logger.debug("It should return 2 for value.");
-        var instance = new NumberFactory(1, 25, 1);
+        var instance = new NumberFactory(1, 25);
         return  instance.getValue(1) == 2;
     }
 
@@ -59,7 +59,7 @@ class NumberFactory extends WatchUi.PickerFactory {
     (:test)
     function testGetSize(logger) {
         logger.debug("It should return 25 for size.");
-        var instance = new NumberFactory(1, 25, 1);
+        var instance = new NumberFactory(1, 25);
         return  instance.getSize() == 25;
     }
 }
