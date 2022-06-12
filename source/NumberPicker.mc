@@ -1,16 +1,18 @@
 using Toybox.WatchUi as Ui;
 
+//Picker for numeric values
 class NumberPicker extends Ui.Picker {
 
-    public function initialize() {
-         var title = new WatchUi.Text({:text=>"Minute", :locX=>WatchUi.LAYOUT_HALIGN_CENTER,
-            :locY=>WatchUi.LAYOUT_VALIGN_BOTTOM, :color=>Graphics.COLOR_WHITE});
+    public function initialize(text) {
+         var title = new Ui.Text({:text=>text,
+            :locX=>WatchUi.LAYOUT_HALIGN_CENTER,
+            :locY=>WatchUi.LAYOUT_VALIGN_BOTTOM,
+            :color=>Graphics.COLOR_WHITE});
         var factory = new NumberFactory(1, 25, 1);
-        var defaults = new Array<Number>[1];
+
         Picker.initialize({
             :title=>title,
-            :pattern=>[factory],
-            :defaults=>defaults
+            :pattern=>[factory]
             });
     }
 
