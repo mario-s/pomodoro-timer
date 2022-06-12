@@ -14,7 +14,7 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 
 	function initialize() {
 		Ui.BehaviorDelegate.initialize();
-		menu = new Rez.Menus.StopMenu();
+		menu = new Rez.Menus.MainMenu();
 	}
 
 	function onBack() {
@@ -51,7 +51,7 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 	function onMenu() {
 		// find hold item and align with field from Pomodoro
 		findHoldItem(menu).setEnabled(Pomodoro.isOnHold());
-		Ui.pushView(menu, new StopMenuDelegate(), Ui.SLIDE_UP);
+		Ui.pushView(menu, new MainMenuDelegate(), Ui.SLIDE_UP);
 		return true;
 	}
 

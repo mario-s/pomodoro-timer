@@ -6,7 +6,7 @@ using Pomodoro;
 /**
  * Delegate for the Stop Menu Item.
  **/
-class StopMenuDelegate extends Ui.Menu2InputDelegate {
+class MainMenuDelegate extends Ui.Menu2InputDelegate {
 
 	function initialize() {
 		Menu2InputDelegate.initialize();
@@ -34,6 +34,8 @@ class StopMenuDelegate extends Ui.Menu2InputDelegate {
 		} else if (id == :exit) {
 			//complete exit
 			System.exit();
+		} else if (id == :timer) {
+			Ui.pushView(new Rez.Menus.TimerMenu(), new TimerMenuDelegate(), WatchUi.SLIDE_UP);
 		}
 	}
 }
