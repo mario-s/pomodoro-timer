@@ -1,18 +1,21 @@
 using Toybox.WatchUi as Ui;
+using Toybox.Application as App;
 
 //Picker for numeric values
 class NumberPicker extends Ui.Picker {
 
-    public function initialize(text) {
+    public function initialize(text as String, prop as String) {
          var title = new Ui.Text({:text=>text,
             :locX=>WatchUi.LAYOUT_HALIGN_CENTER,
             :locY=>WatchUi.LAYOUT_VALIGN_BOTTOM,
             :color=>Graphics.COLOR_WHITE});
         var factory = new NumberFactory(1, 25);
+        var value = App.getApp().getProperty(prop);
 
         Picker.initialize({
             :title=>title,
-            :pattern=>[factory]
+            :pattern=>[factory],
+            :defaults=>[value]
             });
     }
 
@@ -35,6 +38,7 @@ class NumberPickerDelegate extends Ui.PickerDelegate {
     }
 
     public function onAccept(values as Array<Number?>) as Boolean {
+        //TODO save value into settings
         return true;
     }
 }

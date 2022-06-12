@@ -21,7 +21,8 @@ class TimerMenuDelegate extends Ui.Menu2InputDelegate {
 		var id = item.getId();
 		if (id == :pomodoro) {
 			var text = Rez.Strings.TimerPomodoroLabel;
-			Ui.pushView(new NumberPicker(text), new NumberPickerDelegate(), Ui.SLIDE_IMMEDIATE);
+			var prop = "pomodoroDuration";
+			Ui.pushView(new NumberPicker(text, prop), new NumberPickerDelegate(), Ui.SLIDE_IMMEDIATE);
 		}
 	}
 }
