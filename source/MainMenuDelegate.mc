@@ -4,7 +4,7 @@ using Pomodoro;
 
 
 /**
- * Delegate for the Stop Menu Item.
+ * Delegate for the Main Menu.
  **/
 class MainMenuDelegate extends Ui.Menu2InputDelegate {
 
