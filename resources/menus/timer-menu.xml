@@ -1,6 +1,6 @@
 <menu2 id="TimerMenu">
 	<menu-item id="pomodoro" label="@Strings.TimerPomodoroLabel"/>
 	<menu-item id="shortBreak" label="@Strings.TimerShortBreakLabel"/>
-	<menu-item id="longBreak" label="@Strings.TimerLonkBreakLabel"/>
+	<menu-item id="longBreak" label="@Strings.TimerLongBreakLabel"/>
 	<menu-item id="longBreakAfter" label="@Strings.TimerLongBreakAfterLabel"/>
 </menu2>

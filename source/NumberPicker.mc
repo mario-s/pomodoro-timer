@@ -4,25 +4,49 @@ using Toybox.Application as App;
 //Picker for numeric values
 class NumberPicker extends Ui.Picker {
 
-    public function initialize(text as String, prop as String) {
+    public function initialize(text as String, prop as String, factory as NumberFactory) {
          var title = new Ui.Text({:text=>text,
             :locX=>WatchUi.LAYOUT_HALIGN_CENTER,
             :locY=>WatchUi.LAYOUT_VALIGN_BOTTOM,
             :color=>Graphics.COLOR_WHITE});
-        var factory = new NumberFactory(1, 25);
-        var value = App.getApp().getProperty(prop);
-
+        var index = self.getIndex(prop);
         Picker.initialize({
             :title=>title,
             :pattern=>[factory],
-            :defaults=>[value]
+            :defaults=>[index]
             });
+    }
+
+    private function getIndex(prop as String) as Number {
+        var index = App.getApp().getProperty(prop);
+        if (index <= 0) {
+            index = 0;
+        } else {
+            index = index - 1;
+        }
+        return index;
     }
 
     public function onUpdate(dc as Dc) as Void {
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
         Picker.onUpdate(dc);
+    }
+}
+
+class IntervallPicker extends NumberPicker {
+
+    public function initialize(text as String, prop as String) {
+        var factory = new NumberFactory(1, 25);
+        NumberPicker.initialize(text, prop, factory);
+    }
+}
+
+class CountPicker extends NumberPicker {
+
+    public function initialize(text as String, prop as String) {
+        var factory = new NumberFactory(1, 10);
+        NumberPicker.initialize(text, prop, factory);
     }
 }
 

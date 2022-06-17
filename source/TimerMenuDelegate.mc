@@ -22,7 +22,19 @@ class TimerMenuDelegate extends Ui.Menu2InputDelegate {
 		if (id == :pomodoro) {
 			var text = Rez.Strings.TimerPomodoroLabel;
 			var prop = "pomodoroDuration";
-			Ui.pushView(new NumberPicker(text, prop), new NumberPickerDelegate(), Ui.SLIDE_IMMEDIATE);
+			Ui.pushView(new IntervallPicker(text, prop), new NumberPickerDelegate(), Ui.SLIDE_IMMEDIATE);
+		} else if (id == :shortBreak) {
+			var text = Rez.Strings.TimerShortBreakLabel;
+			var prop = "shortBreakDuration";
+			Ui.pushView(new IntervallPicker(text, prop), new NumberPickerDelegate(), Ui.SLIDE_IMMEDIATE);
+		} else if (id == :longBreak) {
+			var text = Rez.Strings.TimerLongBreakLabel;
+			var prop = "longBreakDuration";
+			Ui.pushView(new IntervallPicker(text, prop), new NumberPickerDelegate(), Ui.SLIDE_IMMEDIATE);
+		} else if (id == :longBreakAfter) {
+			var text = Rez.Strings.TimerLongBreakAfterLabel;
+			var prop = "pomodorosBeforeLongBreak";
+			Ui.pushView(new CountPicker(text, prop), new NumberPickerDelegate(), Ui.SLIDE_IMMEDIATE);
 		}
 	}
 }

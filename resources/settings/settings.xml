@@ -1,15 +1,15 @@
 <settings>
 	<setting propertyKey="@Properties.pomodoroDuration" title="@Strings.PomodoroDuration">
-		<settingConfig type="numeric" min="1" />
+		<settingConfig type="numeric" min="1" max="25"/>
 	</setting>
 	<setting propertyKey="@Properties.shortBreakDuration" title="@Strings.ShortBreakDuration">
-		<settingConfig type="numeric" min="1" />
+		<settingConfig type="numeric" min="1" max="25"/>
 	</setting>
 	<setting propertyKey="@Properties.longBreakDuration" title="@Strings.LongBreakDuration">
-		<settingConfig type="numeric" min="1" />
+		<settingConfig type="numeric" min="1" max="25"/>
 	</setting>
 	<setting propertyKey="@Properties.pomodorosBeforeLongBreak" title="@Strings.PomodorosBeforeLongBreak">
-		<settingConfig type="numeric" min="1" />
+		<settingConfig type="numeric" min="1" max="10"/>
 	</setting>
 	<setting propertyKey="@Properties.vibrateOnChange" title="@Strings.VibrateOnChange">
 		<settingConfig type="boolean" />
