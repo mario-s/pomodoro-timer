@@ -6,7 +6,7 @@
 		<settingConfig type="numeric" min="1" max="25"/>
 	</setting>
 	<setting propertyKey="@Properties.longBreakDuration" title="@Strings.LongBreakDuration">
-		<settingConfig type="numeric" min="1" max="25"/>
+		<settingConfig type="numeric" min="1" max="45"/>
 	</setting>
 	<setting propertyKey="@Properties.pomodorosBeforeLongBreak" title="@Strings.PomodorosBeforeLongBreak">
 		<settingConfig type="numeric" min="1" max="10"/>

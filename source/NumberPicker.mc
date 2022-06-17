@@ -1,5 +1,5 @@
 using Toybox.WatchUi as Ui;
-using Toybox.Application as App;
+using Toybox.Application.Properties;
 
 //Picker for numeric values
 class NumberPicker extends Ui.Picker {
@@ -18,7 +18,7 @@ class NumberPicker extends Ui.Picker {
     }
 
     private function getIndex(prop as String) as Number {
-        var index = App.getApp().getProperty(prop);
+        var index = Properties.getValue(prop);
         if (index <= 0) {
             index = 0;
         } else {

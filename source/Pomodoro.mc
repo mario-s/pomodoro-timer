@@ -3,7 +3,7 @@ using Toybox.Attention as Attention;
 using Toybox.Timer as Timer;
 using Toybox.Lang as Lang;
 using Toybox.Math;
-using Toybox.Application as App;
+using Toybox.Application.Properties;
 using Geometry;
 
 
@@ -38,8 +38,8 @@ module Pomodoro {
 	var isVibrateOnChange = true;
 
 	function initialize() {
-		isSoundOnChange =  App.getApp().getProperty("soundOnChange");
-		isVibrateOnChange = App.getApp().getProperty("vibrateOnChange");
+		isSoundOnChange =  Properties.getValue("soundOnChange");
+		isVibrateOnChange = Properties.getValue("vibrateOnChange");
 
 		timer = new Timer.Timer();
 	}
@@ -248,16 +248,16 @@ module Pomodoro {
 
 	function resetPauseMinutes() {
 		var breakVariant =  isLongBreak() ? "longBreakDuration" : "shortBreakDuration";
-		initInterval(App.getApp().getProperty(breakVariant));
+		initInterval(Properties.getValue(breakVariant));
 	}
 
 	function isLongBreak() {
-		var groupLength = App.getApp().getProperty("pomodorosBeforeLongBreak");
+		var groupLength = Properties.getValue("pomodorosBeforeLongBreak");
 		return (iteration % groupLength) == 0;
 	}
 
 	function resetPomodoroMinutes() {
-		initInterval(App.getApp().getProperty("pomodoroDuration"));
+		initInterval(Properties.getValue("pomodoroDuration"));
 	}
 
 	function initInterval(length) {
