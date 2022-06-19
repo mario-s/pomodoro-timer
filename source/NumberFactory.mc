@@ -4,6 +4,7 @@ using Toybox.WatchUi;
 
 // Factory that controls which numbers can be picked
 class NumberFactory extends WatchUi.PickerFactory {
+
     private var start as Number;
     private var stop as Number;
     private var formatString as String;

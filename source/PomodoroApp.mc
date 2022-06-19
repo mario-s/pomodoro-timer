@@ -6,29 +6,29 @@ using Pomodoro;
  **/
 class PomodoroApp extends App.AppBase {
 
-	function initialize() {
-		AppBase.initialize();
-		Pomodoro.initialize();
-	}
+    function initialize() {
+        AppBase.initialize();
+        Pomodoro.initialize();
+    }
 
-	(:test)
-	function testInitialize(logger) {
-		logger.debug("It should initialize the core module.");
-		initialize();
-		return Pomodoro.isReady();
-	}
+    (:test)
+    function testInitialize(logger) {
+        logger.debug("It should initialize the core module.");
+        initialize();
+        return Pomodoro.isReady();
+    }
 
-	// on application start
-	function onStart(state) {
-		Pomodoro.startTimer();
-	}
+    // on application start
+    function onStart(state) {
+        Pomodoro.startTimer();
+    }
 
-	// on application stop
-	function onStop(state) {
-		Pomodoro.stop();
-	}
+    // on application stop
+    function onStop(state) {
+        Pomodoro.stop();
+    }
 
-	function getInitialView() {
-		return [new PomodoroView(), new PomodoroDelegate()];
-	}
+    function getInitialView() {
+        return [new PomodoroView(), new PomodoroDelegate()];
+    }
 }
