@@ -20,21 +20,17 @@ class TimerMenuDelegate extends Ui.Menu2InputDelegate {
 	function onSelect(item as MenuItem) {
 		var id = item.getId();
 		if (id == :pomodoro) {
-			var text = Rez.Strings.TimerPomodoroLabel;
-			var prop = "pomodoroDuration";
-			Ui.pushView(new NumberPicker(text, prop, 25), new NumberPickerDelegate(), Ui.SLIDE_IMMEDIATE);
+			showPicker(Rez.Strings.TimerPomodoroLabel, Props.POMODORO, 25);
 		} else if (id == :shortBreak) {
-			var text = Rez.Strings.TimerShortBreakLabel;
-			var prop = "shortBreakDuration";
-			Ui.pushView(new NumberPicker(text, prop, 25), new NumberPickerDelegate(), Ui.SLIDE_IMMEDIATE);
+			showPicker(Rez.Strings.TimerShortBreakLabel, Props.SHORT_BREAK, 25);
 		} else if (id == :longBreak) {
-			var text = Rez.Strings.TimerLongBreakLabel;
-			var prop = "longBreakDuration";
-			Ui.pushView(new NumberPicker(text, prop, 45), new NumberPickerDelegate(), Ui.SLIDE_IMMEDIATE);
+			showPicker(Rez.Strings.TimerLongBreakLabel, Props.LONG_BREAK, 45);
 		} else if (id == :longBreakAfter) {
-			var text = Rez.Strings.TimerLongBreakAfterLabel;
-			var prop = "pomodorosBeforeLongBreak";
-			Ui.pushView(new NumberPicker(text, prop, 10), new NumberPickerDelegate(), Ui.SLIDE_IMMEDIATE);
+			showPicker(Rez.Strings.TimerLongBreakAfterLabel, Props.POMODORO_GROUP, 10);
 		}
+	}
+
+	private function showPicker(text, key, max) {
+		Ui.pushView(new NumberPicker(text, key, max), new NumberPickerDelegate(key), Ui.SLIDE_IMMEDIATE);
 	}
 }
