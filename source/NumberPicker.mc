@@ -8,6 +8,7 @@ class NumberPicker extends Ui.Picker {
          var title = new Ui.Text({:text=>text,
             :locX=>WatchUi.LAYOUT_HALIGN_CENTER,
             :locY=>WatchUi.LAYOUT_VALIGN_BOTTOM,
+            :font=>Graphics.FONT_TINY,
             :color=>Graphics.COLOR_WHITE});
         var factory = new NumberFactory(1, max);
         var index = self.getIndex(prop);
