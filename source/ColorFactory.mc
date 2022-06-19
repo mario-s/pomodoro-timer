@@ -7,7 +7,7 @@ using Toybox.Graphics;
 class ColorFactory {
 
     function getColorByProperty(key as String) {
-        var value = App.getApp().getProperty(key);
+        var value = Props.getValue(key);
         return getColor(value);
     }
 

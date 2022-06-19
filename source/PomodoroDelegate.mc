@@ -10,7 +10,7 @@ using Pomodoro;
  **/
 class PomodoroDelegate extends Ui.BehaviorDelegate {
 
-	var menu;
+	private var menu;
 
 	function initialize() {
 		Ui.BehaviorDelegate.initialize();
