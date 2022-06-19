@@ -35,16 +35,8 @@ class MainMenuDelegate extends Ui.Menu2InputDelegate {
 			//complete exit
 			System.exit();
 		} else if (id == :timer) {
-			var menu = initTimerMenu();
-			Ui.pushView(menu, new TimerMenuDelegate(), WatchUi.SLIDE_UP);
+			var factory = new TimerMenuFactory();
+			Ui.pushView(factory.create(), new TimerMenuDelegate(), WatchUi.SLIDE_UP);
 		}
-	}
-
-	private function initTimerMenu() {
-		var menu = new Rez.Menus.TimerMenu();
-		var item = menu.getItem(0);
-		var lbl = Props.getValue(Props.POMODORO).toString();
-		item.setSubLabel(lbl);
-		return menu;
 	}
 }

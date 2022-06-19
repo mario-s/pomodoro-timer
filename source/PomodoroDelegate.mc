@@ -10,7 +10,7 @@ using Pomodoro;
  **/
 class PomodoroDelegate extends Ui.BehaviorDelegate {
 
-	private var menu;
+	var menu;
 
 	function initialize() {
 		Ui.BehaviorDelegate.initialize();
@@ -62,7 +62,7 @@ class PomodoroDelegate extends Ui.BehaviorDelegate {
 
 	(:test)
 	function testOnMenu(logger) {
-		logger.debug("Test for onMenu should should enable toggle item when on hold.");
+		logger.debug("Test for onMenu should enable toggle item when on hold.");
 		var instance = new PomodoroDelegate();
 		Pomodoro.onHold();
 		instance.onMenu();
