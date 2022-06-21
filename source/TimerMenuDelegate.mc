@@ -20,17 +20,17 @@ class TimerMenuDelegate extends Ui.Menu2InputDelegate {
     function onSelect(item as MenuItem) {
         var id = item.getId();
         if (id == :pomodoro) {
-            showPicker(Rez.Strings.TimerPomodoroLabel, Props.POMODORO, 25);
+            showPicker(Rez.Strings.TimerPomodoroLabel, Props.POMODORO, 25, item);
         } else if (id == :shortBreak) {
-            showPicker(Rez.Strings.TimerShortBreakLabel, Props.SHORT_BREAK, 25);
+            showPicker(Rez.Strings.TimerShortBreakLabel, Props.SHORT_BREAK, 25, item);
         } else if (id == :longBreak) {
-            showPicker(Rez.Strings.TimerLongBreakLabel, Props.LONG_BREAK, 45);
+            showPicker(Rez.Strings.TimerLongBreakLabel, Props.LONG_BREAK, 45, item);
         } else if (id == :longBreakAfter) {
-            showPicker(Rez.Strings.TimerLongBreakAfterLabel, Props.POMODORO_GROUP, 10);
+            showPicker(Rez.Strings.TimerLongBreakAfterLabel, Props.POMODORO_GROUP, 10, item);
         }
     }
 
-    private function showPicker(text, key, max) {
-        Ui.pushView(new NumberPicker(text, key, max), new NumberPickerDelegate(key), Ui.SLIDE_IMMEDIATE);
+    private function showPicker(text, key, max, item) {
+        Ui.pushView(new NumberPicker(text, key, max), new NumberPickerDelegate(key, item), Ui.SLIDE_IMMEDIATE);
     }
 }

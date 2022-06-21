@@ -4,16 +4,23 @@ using Toybox.WatchUi as Ui;
 class NumberPickerDelegate extends Ui.PickerDelegate {
 
     private var key;
+    private var item;
+    private var labelFactory;
 
-    public function initialize(key as String) {
-        self.key = key;
+    public function initialize(key as String, item as MenuItem) {
         PickerDelegate.initialize();
+        self.key = key;
+        self.item = item;
+        labelFactory = new LabelFactory();
     }
 
     public function onAccept(values as Array<Number?>) as Boolean {
         if (values.size() > 0) {
             var value = values[0];
+            //order is important, first store the value, then read it again
             Props.setValue(key, value);
+            var lbl = labelFactory.create(key);
+            item.setSubLabel(lbl);
         }
         return onCancel();
     }
