@@ -7,16 +7,16 @@ using Toybox.Graphics;
 class ColorFactory {
 
     function getColorByProperty(key as String) {
-        var value = App.getApp().getProperty(key);
+        var value = Props.getValue(key);
         return getColor(value);
     }
 
     (:test)
-	function testGetColorByProperty(logger) {
-		logger.debug("It should return a color from a property.");
+    function testGetColorByProperty(logger) {
+        logger.debug("It should return a color from a property.");
         var instance = new ColorFactory();
-		return instance.getColorByProperty("readyColor") != Graphics.COLOR_BLACK;
-	}
+        return instance.getColorByProperty("readyColor") != Graphics.COLOR_BLACK;
+    }
 
     private function getColor(index) {
         switch(index) {

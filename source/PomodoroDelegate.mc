@@ -10,62 +10,62 @@ using Pomodoro;
  **/
 class PomodoroDelegate extends Ui.BehaviorDelegate {
 
-	var menu;
+    var menu;
 
-	function initialize() {
-		Ui.BehaviorDelegate.initialize();
-		menu = new Rez.Menus.StopMenu();
-	}
+    function initialize() {
+        Ui.BehaviorDelegate.initialize();
+        menu = new Rez.Menus.MainMenu();
+    }
 
-	function onBack() {
-		Ui.popView(Ui.SLIDE_RIGHT);
-		return true;
-	}
+    function onBack() {
+        onMenu();
+        return true;
+    }
 
-	function onNextMode() {
-		return true;
-	}
+    function onNextMode() {
+        return true;
+    }
 
-	function onNextPage() {
-		return true;
-	}
+    function onNextPage() {
+        return true;
+    }
 
-	function onSelect() {
-		if (Pomodoro.isReady()) {
-			Pomodoro.start();
-			Ui.requestUpdate();
-		} else { // pomodoro is in running or break state
-			onMenu();
-		}
+    function onSelect() {
+        if (Pomodoro.isReady()) {
+            Pomodoro.start();
+            Ui.requestUpdate();
+        } else { // pomodoro is in running or break state
+            onMenu();
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	(:test)
-	function testOnSelect(logger) {
-		logger.debug("It should change to state running in onSelect.");
-		PomodoroDelegate.onSelect();
-		return Pomodoro.isRunning();
-	}
+    (:test)
+    function testOnSelect(logger) {
+        logger.debug("It should change to state running in onSelect.");
+        PomodoroDelegate.onSelect();
+        return Pomodoro.isRunning();
+    }
 
-	function onMenu() {
-		// find hold item and align with field from Pomodoro
-		findHoldItem(menu).setEnabled(Pomodoro.isOnHold());
-		Ui.pushView(menu, new StopMenuDelegate(), Ui.SLIDE_UP);
-		return true;
-	}
+    function onMenu() {
+        // find hold item and align with field from Pomodoro
+        findHoldItem(menu).setEnabled(Pomodoro.isOnHold());
+        Ui.pushView(menu, new MainMenuDelegate(), Ui.SLIDE_UP);
+        return true;
+    }
 
-	function findHoldItem(menu as Menu2) {
-		var id = menu.findItemById(:hold);
-		return menu.getItem(id);
-	}
+    function findHoldItem(menu as Menu2) {
+        var id = menu.findItemById(:hold);
+        return menu.getItem(id);
+    }
 
-	(:test)
-	function testOnMenu(logger) {
-		logger.debug("Test for onMenu should should enable toggle item when on hold.");
-		var instance = new PomodoroDelegate();
-		Pomodoro.onHold();
-		instance.onMenu();
-		return instance.findHoldItem(instance.menu).isEnabled();
-	}
+    (:test)
+    function testOnMenu(logger) {
+        logger.debug("Test for onMenu should enable toggle item when on hold.");
+        var instance = new PomodoroDelegate();
+        Pomodoro.onHold();
+        instance.onMenu();
+        return instance.findHoldItem(instance.menu).isEnabled();
+    }
 }

@@ -15,6 +15,12 @@
 	<string id="RestartMenuLabel">Restart</string>
 	<string id="HoldMenuLabel">Hold</string>
 	<string id="ExitMenuLabel">Exit</string>
+	<string id="TimerMenuLabel">Timer</string>
+
+	<string id="TimerPomodoroLabel">Pomodoro</string>
+	<string id="TimerShortBreakLabel">Short Break</string>
+	<string id="TimerLongBreakLabel">Long Break</string>
+	<string id="TimerRepeatsLabel">Repeats</string>
 
 	<string id="PomodoroColor">Color for Pomodoro</string>
 	<string id="ReadyColor">Color for ready state</string>

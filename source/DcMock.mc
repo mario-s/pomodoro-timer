@@ -79,11 +79,11 @@ class DcMock {
     }
 
     (:test)
-	function testInvoked(logger) {
-		logger.debug("It should allow to verify that a number of methods are invoked.");
-		var instance = new DcMock();
+    function testInvoked(logger) {
+        logger.debug("It should allow to verify that a number of methods are invoked.");
+        var instance = new DcMock();
         instance.clear();
         instance.setPenWidth(2);
-		return !instance.invoked(["clear", "foo"]);
-	}
+        return !instance.invoked(["clear", "foo"]);
+    }
 }
