@@ -19,7 +19,7 @@
 	<string id="PomodoroColor">Color para Pomodoro</string>
 	<string id="ReadyColor">Color cuando listo</string>
 	<string id="BreakColor">Color para pausa</string>
-	<string id="TimerMenuLabel">Timers</string>
+	<string id="TimerMenuLabel">Avisador</string>
 
 	<string id="TimerPomodoroLabel">Pomodoro</string>
 	<string id="TimerShortBreakLabel">Descanso corto</string>

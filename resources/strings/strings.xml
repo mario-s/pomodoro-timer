@@ -15,7 +15,7 @@
 	<string id="RestartMenuLabel">Restart</string>
 	<string id="HoldMenuLabel">Hold</string>
 	<string id="ExitMenuLabel">Exit</string>
-	<string id="TimerMenuLabel">Timers</string>
+	<string id="TimerMenuLabel">Timer</string>
 
 	<string id="TimerPomodoroLabel">Pomodoro</string>
 	<string id="TimerShortBreakLabel">Short Break</string>
