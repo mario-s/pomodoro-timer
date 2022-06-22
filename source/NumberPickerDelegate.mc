@@ -31,19 +31,19 @@ class NumberPickerDelegate extends Ui.PickerDelegate {
     }
 
     (:test)
-	function testOnAccept(logger) {
-		logger.debug("It should save a value into properties.");
-		var key = Props.POMODORO;
+    function testOnAccept(logger) {
+        logger.debug("It should save a value into properties.");
+        var key = Props.POMODORO;
         //keep origin value
         var origin = Props.getValue(key);
-
+        var item = new TimerMenuFactory().create().getItem(0);
         //invoke instance and change
-        var instance = new NumberPickerDelegate(key);
+        var instance = new NumberPickerDelegate(key, item);
         instance.onAccept([5]);
         var changed = Props.getValue(key);
 
         //set back to origin
         Props.setValue(key, origin);
         return changed == 5;
-	}
+    }
 }
