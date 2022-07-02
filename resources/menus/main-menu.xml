@@ -2,5 +2,5 @@
 	<menu-item id="restart" label="@Strings.RestartMenuLabel" />
 	<toggle-menu-item id="hold" label="@Strings.HoldMenuLabel"/>
 	<menu-item id="exit" label="@Strings.ExitMenuLabel"/>
-	<menu-item id="timer" label="@Strings.TimerMenuLabel"/>
+	<!--menu-item id="timer" label="@Strings.TimerMenuLabel"/-->
 </menu2>
