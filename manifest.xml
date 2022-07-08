@@ -56,12 +56,16 @@
             <iq:product id="vivoactive4"/>
             <iq:product id="vivoactive4s"/>
         </iq:products>
-        <iq:permissions/>
         <iq:languages>
             <iq:language>eng</iq:language>
             <iq:language>deu</iq:language>
             <iq:language>spa</iq:language>
         </iq:languages>
-        <iq:barrels/>
+        <iq:permissions>
+            <iq:uses-permission id="Communications"/>
+        </iq:permissions>
+        <iq:barrels>
+            <iq:depends name="KPayApp" version="1.3.2"/>
+        </iq:barrels>
     </iq:application>
 </iq:manifest>

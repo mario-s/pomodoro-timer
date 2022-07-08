@@ -1,5 +1,8 @@
 using Toybox.Application as App;
 using Pomodoro;
+using KPayApp.KPay as KPay;
+
+var kpay;
 
 /**
  * The entry point.
@@ -9,13 +12,7 @@ class PomodoroApp extends App.AppBase {
     function initialize() {
         AppBase.initialize();
         Pomodoro.initialize();
-    }
-
-    (:test)
-    function testInitialize(logger) {
-        logger.debug("It should initialize the core module.");
-        initialize();
-        return Pomodoro.isReady();
+        kpay = new KPay.Core(KPAY_CONFIG);
     }
 
     // on application start

@@ -39,8 +39,14 @@ module Pomodoro {
     function initialize() {
         isSoundOnChange =  Props.getValue(Props.SOUND);
         isVibrateOnChange = Props.getValue(Props.VIBRATE);
-
         timer = new Timer.Timer();
+    }
+
+    (:test)
+    function testInitialize(logger) {
+        logger.debug("It should initialize the core module.");
+        initialize();
+        return Pomodoro.isReady();
     }
 
     function startTimer() {
