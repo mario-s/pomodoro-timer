@@ -86,18 +86,22 @@ class PomodoroView extends Ui.View {
     }
 
     function onUpdate(dc) {
-        clearView(dc);
-
-        if (Pomodoro.isPaused()) {
-            drawBreak(dc);
-        } else if (Pomodoro.isRunning()) {
-            drawRunning(dc);
+        if (kpay.shouldShowDialog()) {
+            kpay.drawDialog(dc);
         } else {
-            drawReady(dc);
-        }
+            clearView(dc);
 
-        drawIcon(dc);
-        drawTime(dc);
+            if (Pomodoro.isPaused()) {
+                drawBreak(dc);
+            } else if (Pomodoro.isRunning()) {
+                drawRunning(dc);
+            } else {
+                drawReady(dc);
+            }
+
+            drawIcon(dc);
+            drawTime(dc);
+        }
     }
 
     (:test)
