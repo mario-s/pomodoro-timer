@@ -1,36 +1,36 @@
 <strings>
-	<string id="AppName">Pomodoro Minuteur</string>
-	<string id="PomodoroDuration">Durée d'un Pomodoro (en minutes)</string>
-	<string id="ShortBreakDuration">Durée d'une courte pause</string>
-	<string id="LongBreakDuration">Durée d'une longue pause</string>
-	<string id="PomodorosBeforeLongBreak">Nombre de Pomodoros dans un groupe</string>
-	<string id="VibrateOnChange">Vibration lors du changement</string>
-	<string id="SoundOnChange">Tonalités lors du changement</string>
+    <string id="AppName">Pomodoro Minuteur</string>
+    <string id="PomodoroDuration">Durée d'un Pomodoro (en minutes)</string>
+    <string id="ShortBreakDuration">Durée d'une courte pause</string>
+    <string id="LongBreakDuration">Durée d'une longue pause</string>
+    <string id="PomodorosBeforeLongBreak">Nombre de Pomodoros dans un groupe</string>
+    <string id="VibrateOnChange">Vibration lors du changement</string>
+    <string id="SoundOnChange">Tonalités lors du changement</string>
 
-	<string id="Minutes">min</string>
-	<string id="ShortBreakLabel">Courte Pause!</string>
-	<string id="LongBreakLabel">Longue Pause!</string>
-	<string id="ReadyLabel">Prêt!</string>
+    <string id="Minutes">min</string>
+    <string id="ShortBreakLabel">Courte Pause!</string>
+    <string id="LongBreakLabel">Longue Pause!</string>
+    <string id="ReadyLabel">Prêt!</string>
 
-	<string id="RestartMenuLabel">Redémarrer</string>
-	<string id="HoldMenuLabel">Arrêt</string>
-	<string id="ExitMenuLabel">Fin</string>
-	<string id="TimerMenuLabel">Minuteur</string>
+    <string id="RestartMenuLabel">Redémarrer</string>
+    <string id="HoldMenuLabel">Arrêt</string>
+    <string id="ExitMenuLabel">Fin</string>
+    <string id="TimerMenuLabel">Minuteur</string>
 
-	<string id="TimerPomodoroLabel">Pomodoro</string>
-	<string id="TimerShortBreakLabel">Courte Pause</string>
-	<string id="TimerLongBreakLabel">Longue Pause</string>
-	<string id="TimerRepeatsLabel">Répétitions</string>
+    <string id="TimerPomodoroLabel">Pomodoro</string>
+    <string id="TimerShortBreakLabel">Courte Pause</string>
+    <string id="TimerLongBreakLabel">Longue Pause</string>
+    <string id="TimerRepeatsLabel">Répétitions</string>
 
-	<string id="PomodoroColor">Couleur pour Pomodoro</string>
-	<string id="ReadyColor">Couleur pour statut 'Prêt'</string>
-	<string id="BreakColor">Couleur pour pause</string>
+    <string id="PomodoroColor">Couleur pour Pomodoro</string>
+    <string id="ReadyColor">Couleur pour statut 'Prêt'</string>
+    <string id="BreakColor">Couleur pour pause</string>
 
-	<string id="Blue">Bleu</string>
-	<string id="Green">Vert</string>
-	<string id="Orange">Orange</string>
-	<string id="Pink">Rose</string>
-	<string id="Red">Rouge</string>
-	<string id="White">Blanc</string>
-	<string id="Yellow">Jaune</string>
+    <string id="Blue">bleu</string>
+    <string id="Green">vert</string>
+    <string id="Orange">orange</string>
+    <string id="Pink">rose</string>
+    <string id="Red">rouge</string>
+    <string id="White">blanc</string>
+    <string id="Yellow">jaune</string>
 </strings>

@@ -1,0 +1,36 @@
+<strings>
+    <string id="AppName">Pomodoro Timer</string>
+    <string id="PomodoroDuration">Duur van één Pomodoro (in minuten)</string>
+    <string id="ShortBreakDuration">Duur van een korte pauze</string>
+    <string id="LongBreakDuration">Duur van een lange pauze</string>
+    <string id="PomodorosBeforeLongBreak">Aantal Pomodoros in een groep</string>
+    <string id="VibrateOnChange">Trilling bij het wijzigen van intervallen</string>
+    <string id="SoundOnChange">Tonen bij intervalverandering</string>
+
+    <string id="Minutes">min</string>
+    <string id="ShortBreakLabel">Korte pauze!</string>
+    <string id="LongBreakLabel">Lange pauze!</string>
+    <string id="ReadyLabel">Klaar!</string>
+
+    <string id="RestartMenuLabel">Herstarten</string>
+    <string id="HoldMenuLabel">Stoppen</string>
+    <string id="ExitMenuLabel">Beëindigen</string>
+    <string id="TimerMenuLabel">Timer</string>
+
+    <string id="TimerPomodoroLabel">Pomodoro</string>
+    <string id="TimerShortBreakLabel">Korte pauze</string>
+    <string id="TimerLongBreakLabel">Lange pauze</string>
+    <string id="TimerRepeatsLabel">Herhalingen</string>
+
+    <string id="PomodoroColor">Kleur voor Pomodoro</string>
+    <string id="ReadyColor">Kleur voor staat 'Klaar'</string>
+    <string id="BreakColor">Kleur voor pauze</string>
+
+    <string id="Blue">blauw</string>
+    <string id="Green">groente</string>
+    <string id="Orange">oranje</string>
+    <string id="Pink">roze</string>
+    <string id="Red">rood</string>
+    <string id="White">wit</string>
+    <string id="Yellow">geel</string>
+</strings>

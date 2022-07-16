@@ -1,36 +1,36 @@
 <strings>
-	<string id="AppName">Pomodoro Timer</string>
-	<string id="PomodoroDuration">Duración del Pomodoro (en minutos)</string>
-	<string id="ShortBreakDuration">Duración del descanso corto</string>
-	<string id="LongBreakDuration">Duración del descanso largo</string>
-	<string id="PomodorosBeforeLongBreak">Cantidad de Pomodoros en un grupo</string>
-	<string id="VibrateOnChange">Vibración si cambios un intervalo</string>
-	<string id="SoundOnChange">Tonos si cambios un intervalo</string>
+    <string id="AppName">Pomodoro Timer</string>
+    <string id="PomodoroDuration">Duración del Pomodoro (en minutos)</string>
+    <string id="ShortBreakDuration">Duración del descanso corto</string>
+    <string id="LongBreakDuration">Duración del descanso largo</string>
+    <string id="PomodorosBeforeLongBreak">Cantidad de Pomodoros en un grupo</string>
+    <string id="VibrateOnChange">Vibración si cambios un intervalo</string>
+    <string id="SoundOnChange">Tonos si cambios un intervalo</string>
 
-	<string id="Minutes">min</string>
-	<string id="ShortBreakLabel">Descanso corto!</string>
-	<string id="LongBreakLabel">Descanso largo!</string>
-	<string id="ReadyLabel">Listo!</string>
+    <string id="Minutes">min</string>
+    <string id="ShortBreakLabel">Descanso corto!</string>
+    <string id="LongBreakLabel">Descanso largo!</string>
+    <string id="ReadyLabel">Listo!</string>
 
-	<string id="RestartMenuLabel">Reiniciar</string>
-	<string id="HoldMenuLabel">Parar</string>
-	<string id="ExitMenuLabel">Salir</string>
+    <string id="RestartMenuLabel">Reiniciar</string>
+    <string id="HoldMenuLabel">Parar</string>
+    <string id="ExitMenuLabel">Salir</string>
 
-	<string id="PomodoroColor">Color para Pomodoro</string>
-	<string id="ReadyColor">Color cuando listo</string>
-	<string id="BreakColor">Color para pausa</string>
-	<string id="TimerMenuLabel">Avisador</string>
+    <string id="PomodoroColor">Color para Pomodoro</string>
+    <string id="ReadyColor">Color cuando listo</string>
+    <string id="BreakColor">Color para pausa</string>
+    <string id="TimerMenuLabel">Avisador</string>
 
-	<string id="TimerPomodoroLabel">Pomodoro</string>
-	<string id="TimerShortBreakLabel">Descanso corto</string>
-	<string id="TimerLongBreakLabel">Descanso largo</string>
-	<string id="TimerRepeatsLabel">Repeticiones</string>
+    <string id="TimerPomodoroLabel">Pomodoro</string>
+    <string id="TimerShortBreakLabel">Descanso corto</string>
+    <string id="TimerLongBreakLabel">Descanso largo</string>
+    <string id="TimerRepeatsLabel">Repeticiones</string>
 
-	<string id="Blue">Azul</string>
-	<string id="Green">Verde</string>
-	<string id="Orange">Orange</string>
-	<string id="Pink">Rosa</string>
-	<string id="Red">Rojo</string>
-	<string id="White">Blanco</string>
-	<string id="Yellow">Amarillo</string>
+    <string id="Blue">azul</string>
+    <string id="Green">verde</string>
+    <string id="Orange">orange</string>
+    <string id="Pink">rosa</string>
+    <string id="Red">rojo</string>
+    <string id="White">blanco</string>
+    <string id="Yellow">amarillo</string>
 </strings>

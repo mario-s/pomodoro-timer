@@ -4,33 +4,33 @@
     <string id="ShortBreakDuration">The duration of a short break</string>
     <string id="LongBreakDuration">The duration of the long break</string>
     <string id="PomodorosBeforeLongBreak">The number of Pomodoros in a group</string>
-	<string id="VibrateOnChange">Vibrate when an interval changes</string>
-	<string id="SoundOnChange">Play sound when an interval changes</string>
+    <string id="VibrateOnChange">Vibrate when an interval changes</string>
+    <string id="SoundOnChange">Play sound when an interval changes</string>
 
-	<string id="Minutes">min</string>
-	<string id="ShortBreakLabel">Short break!</string>
-	<string id="LongBreakLabel">Long break!</string>
-	<string id="ReadyLabel">Ready!</string>
+    <string id="Minutes">min</string>
+    <string id="ShortBreakLabel">Short break!</string>
+    <string id="LongBreakLabel">Long break!</string>
+    <string id="ReadyLabel">Ready!</string>
 
-	<string id="RestartMenuLabel">Restart</string>
-	<string id="HoldMenuLabel">Hold</string>
-	<string id="ExitMenuLabel">Exit</string>
-	<string id="TimerMenuLabel">Timer</string>
+    <string id="RestartMenuLabel">Restart</string>
+    <string id="HoldMenuLabel">Hold</string>
+    <string id="ExitMenuLabel">Exit</string>
+    <string id="TimerMenuLabel">Timer</string>
 
-	<string id="TimerPomodoroLabel">Pomodoro</string>
-	<string id="TimerShortBreakLabel">Short Break</string>
-	<string id="TimerLongBreakLabel">Long Break</string>
-	<string id="TimerRepeatsLabel">Repeats</string>
+    <string id="TimerPomodoroLabel">Pomodoro</string>
+    <string id="TimerShortBreakLabel">Short Break</string>
+    <string id="TimerLongBreakLabel">Long Break</string>
+    <string id="TimerRepeatsLabel">Repeats</string>
 
-	<string id="PomodoroColor">Color for Pomodoro</string>
-	<string id="ReadyColor">Color for ready state</string>
-	<string id="BreakColor">Color for a break</string>
+    <string id="PomodoroColor">Color for Pomodoro</string>
+    <string id="ReadyColor">Color for ready state</string>
+    <string id="BreakColor">Color for a break</string>
 
-	<string id="Blue">Blue</string>
-	<string id="Green">Green</string>
-	<string id="Orange">Orange</string>
-	<string id="Pink">Pink</string>
-	<string id="Red">Red</string>
-	<string id="White">White</string>
-	<string id="Yellow">Yellow</string>
+    <string id="Blue">blue</string>
+    <string id="Green">green</string>
+    <string id="Orange">Orange</string>
+    <string id="Pink">pink</string>
+    <string id="Red">red</string>
+    <string id="White">white</string>
+    <string id="Yellow">yellow</string>
 </strings>
