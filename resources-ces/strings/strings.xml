@@ -1,0 +1,36 @@
+<strings>
+    <string id="AppName">Pomodoro Timer</string>
+    <string id="PomodoroDuration">Doba trvání Pomodoro (v minutách)</string>
+    <string id="ShortBreakDuration">Trvání krátké přestávky</string>
+    <string id="LongBreakDuration">Trvání dlouhé přestávky</string>
+    <string id="PomodorosBeforeLongBreak">Počet pomodoros ve skupině</string>
+    <string id="VibrateOnChange">Vibrace při změně intervalů</string>
+    <string id="SoundOnChange">Tóny při změně intervalu</string>
+
+    <string id="Minutes">min</string>
+    <string id="ShortBreakLabel">Krátká přestávka!</string>
+    <string id="LongBreakLabel">Dlouhá přestávka!</string>
+    <string id="ReadyLabel">Připraven!</string>
+
+    <string id="RestartMenuLabel">Restartovat</string>
+    <string id="HoldMenuLabel">Stop</string>
+    <string id="ExitMenuLabel">Konec</string>
+    <string id="TimerMenuLabel">Timer</string>
+
+    <string id="TimerPomodoroLabel">Pomodoro</string>
+    <string id="TimerShortBreakLabel">Krátká přestávka</string>
+    <string id="TimerLongBreakLabel">Dlouhá přestávkae</string>
+    <string id="TimerRepeatsLabel">Opakování</string>
+
+    <string id="PomodoroColor">Barva pro Pomodoro</string>
+    <string id="ReadyColor">Barva pro stav 'Připraven'</string>
+    <string id="BreakColor">Barva na přestávku</string>
+
+    <string id="Blue">modrý</string>
+    <string id="Green">zelená</string>
+    <string id="Orange">oranžový</string>
+    <string id="Pink">růžový</string>
+    <string id="Red">červený</string>
+    <string id="White">bílý</string>
+    <string id="Yellow">žlutý</string>
+</strings>
